@@ -426,6 +426,7 @@ public final class LMOSettings {
          * 0: Display the battery an icon in portrait mode
          * 1: Display the battery as a circle
          * 2: Display the battery as plain text
+         * 3: Display the battery as a dotted circle
          * default: 0
          * 
          * @hide
