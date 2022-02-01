@@ -25,6 +25,7 @@
         <item>com.libremobileos.server.app.LineageGlobalActionsService</item>
         <item>com.libremobileos.server.display.LiveDisplayService</item>
         <item>com.libremobileos.server.health.HealthInterfaceService</item>
+        <item>com.libremobileos.server.applock.AppLockManagerService$Lifecycle</item>
     </string-array>
 
     <!-- Paths to the libraries that contain device specific key handlers -->
@@ -275,5 +276,9 @@
     -->
     <string-array name="config_oemFastChargerStatusPaths" translatable="false">
     </string-array>
+
+    <!-- List of system apps that are allowed to be locked with app lock.
+          Use with extreme caution. -->
+    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
 
 </resources>

@@ -169,4 +169,8 @@
     <java-symbol type="string" name="kilobytespersecond_short" />
     <java-symbol type="string" name="megabytespersecond_short" />
 
+    <!-- App lock -->
+    <java-symbol type="string" name="unlock_application" />
+    <java-symbol type="array" name="config_appLockAllowedSystemApps" />
+
 </resources>
