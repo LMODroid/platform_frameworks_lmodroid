@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-/**
- * Copyright (C) 2023 The LibreMobileOS Foundation
+/*
+ * Copyright (C) 2022 FlamingoOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,14 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
 
-<resources>
-    <!-- External LMODroid specific core services -->
-    <java-symbol type="array" name="config_externalLMODroidServices" />
+package com.libremobileos.applock;
 
-    <!-- App lock -->
-    <java-symbol type="string" name="unlock_application" />
-    <java-symbol type="array" name="config_appLockAllowedSystemApps" />
-
-</resources>
+parcelable AppLockData;

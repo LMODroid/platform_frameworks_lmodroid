@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
 /**
- * Copyright (C) 2023 The LibreMobileOS Foundation
+ * Copyright (C) 2023 The LibeMobileOS Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
 
-<resources>
-    <!-- External LMODroid specific core services -->
-    <java-symbol type="array" name="config_externalLMODroidServices" />
+package com.libremobileos.context;
 
-    <!-- App lock -->
-    <java-symbol type="string" name="unlock_application" />
-    <java-symbol type="array" name="config_appLockAllowedSystemApps" />
+/**
+ * @hide
+ * TODO: We need to somehow make these managers accessible via getSystemService
+ */
+public final class LMODroidContextConstants {
 
-</resources>
+    /**
+     * @hide
+     */
+    private LMODroidContextConstants() {
+        // Empty constructor
+    }
+
+    /**
+     * {@link AppLockManager}.
+     *
+     * @see #getSystemService(String)
+     * @hide
+     */
+    public static final String APP_LOCK_SERVICE = "app_lock";
+
+}

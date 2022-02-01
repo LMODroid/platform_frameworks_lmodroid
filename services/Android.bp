@@ -16,7 +16,10 @@
 
 filegroup {
     name: "services.lmodroid-sources",
-    srcs: ["java/**/*.java"],
+    srcs: [
+        "java/**/*.java",
+        "java/**/*.kt"
+    ],
     path: "java",
     visibility: ["//frameworks/base/services"],
 }
@@ -28,5 +31,6 @@ java_library_static {
     libs: ["services.core"],
     static_libs: [
         "framework-lmodroid.static",
+        "kotlinx_coroutines"
     ],
 }
