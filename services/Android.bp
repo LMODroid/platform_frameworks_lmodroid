@@ -32,5 +32,6 @@ java_library_static {
     static_libs: [
         "framework-lmodroid.static",
         "kotlinx_coroutines",
+        "LMOFaceServer",
     ],
 }

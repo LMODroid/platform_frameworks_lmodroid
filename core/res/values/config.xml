@@ -27,6 +27,7 @@
         <item>com.libremobileos.server.health.HealthInterfaceService</item>
         <item>com.libremobileos.server.applock.AppLockManagerService$Lifecycle</item>
         <item>com.libremobileos.server.app.ParallelSpaceManagerService</item>
+        <item>com.libremobileos.server.biometrics.FaceUnlockService</item>
     </string-array>
 
     <!-- Paths to the libraries that contain device specific key handlers -->
