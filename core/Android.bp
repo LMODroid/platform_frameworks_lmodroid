@@ -24,9 +24,47 @@ filegroup {
     visibility: ["//frameworks/base"],
 }
 
+filegroup {
+    name: "framework-lmodroid.api.public.latest",
+    srcs: ["api/current.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid-removed.api.public.latest",
+    srcs: ["api/removed.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid-incompatibilities.api.public.latest",
+    srcs: ["api/test-current.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid.api.system.latest",
+    srcs: ["api/system-current.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid-removed.api.system.latest",
+    srcs: ["api/system-removed.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid-incompatibilities.api.system.latest",
+    srcs: ["api/test-current.txt"],
+}
+
 java_library_static {
     name: "framework-lmodroid.static",
     srcs: [":framework-lmodroid-sources"],
+}
+
+java_sdk_library {
+    name: "framework-lmodroid",
+    srcs: [":framework-lmodroid-sources"],
+
+    api_packages: ["framework-lmodroid"],
+    dist_group: "lmodroid",
 }
 
 genrule {
