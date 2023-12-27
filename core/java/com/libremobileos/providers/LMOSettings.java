@@ -84,6 +84,13 @@ public final class LMOSettings {
         public static final String HIGH_TOUCH_SENSITIVITY_ENABLE =
                 "high_touch_sensitivity_enable";
 
+        /**
+         * Check the proximity sensor during wakeup
+         *
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
     }
 
     /**
