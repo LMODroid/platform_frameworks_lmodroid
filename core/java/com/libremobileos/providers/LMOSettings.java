@@ -498,6 +498,15 @@ public final class LMOSettings {
          */
         public static final String BUTTON_BRIGHTNESS = "button_brightness";
 
+        /**
+         * The keyboard brightness to be used while the screen is on.
+         * Valid value range is between 0 and
+         * {@link PowerManager#getMaximumKeyboardBrightness()}
+         * 
+         * @hide
+         */
+        public static final String KEYBOARD_BRIGHTNESS = "keyboard_brightness";
+
     }
 
     /**
