@@ -21,6 +21,7 @@
     <!-- Defines external services to be started by the LMODroidSystemServer at boot. The service itself
          should publish as a binder services in its onStart -->
     <string-array name="config_externalLMODroidServices">
+        <item>com.libremobileos.server.hardware.LineageHardwareService</item>
     </string-array>
 
     <!-- Paths to the libraries that contain device specific key handlers -->
