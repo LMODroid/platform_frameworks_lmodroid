@@ -158,6 +158,12 @@ public final class LMOSettings {
          */
         public static final String ADVANCED_REBOOT = "advanced_reboot";
 
+        /**
+         * String to contain power menu actions
+         * @hide
+         */
+        public static final String POWER_MENU_ACTIONS = "power_menu_actions";
+
     }
 
     /**
