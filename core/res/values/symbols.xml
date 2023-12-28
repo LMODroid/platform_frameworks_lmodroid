@@ -21,4 +21,8 @@
     <!-- External LMODroid specific core services -->
     <java-symbol type="array" name="config_externalLMODroidServices" />
 
+    <!-- Device keyhandlers -->
+    <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
+    <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
+
 </resources>
