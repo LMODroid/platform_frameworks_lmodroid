@@ -57,11 +57,17 @@ filegroup {
 java_library_static {
     name: "framework-lmodroid.static",
     srcs: [":framework-lmodroid-sources"],
+    static_libs: [
+        "vendor.lineage.touch-V1.0-java",
+    ],
 }
 
 java_sdk_library {
     name: "framework-lmodroid",
     srcs: [":framework-lmodroid-sources"],
+    static_libs: [
+        "vendor.lineage.touch-V1.0-java",
+    ],
 
     api_packages: ["framework-lmodroid"],
     dist_group: "lmodroid",
