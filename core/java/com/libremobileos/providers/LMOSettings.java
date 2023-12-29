@@ -754,6 +754,13 @@ public final class LMOSettings {
          */
         public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
 
+        /**
+         * Whether to show data usage in qs footer
+         * 
+         * @hide
+         */
+        public static final String QS_FOOTER_DATA_USAGE = "qs_footer_data_usage";
+
     }
 
     /**
