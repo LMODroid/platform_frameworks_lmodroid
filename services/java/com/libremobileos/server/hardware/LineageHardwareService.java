@@ -182,7 +182,7 @@ public class LineageHardwareService extends SystemService {
     @Override
     public void onBootPhase(int phase) {
         if (phase == PHASE_BOOT_COMPLETED) {
-            Intent intent = new Intent("lineageos.intent.action.INITIALIZE_LINEAGE_HARDWARE");
+            Intent intent = new Intent(com.libremobileos.content.Intent.ACTION_INITIALIZE_LINEAGE_HARDWARE);
             intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
             mContext.sendBroadcastAsUser(intent, UserHandle.ALL,
                     "lineageos.permission.HARDWARE_ABSTRACTION_ACCESS");
