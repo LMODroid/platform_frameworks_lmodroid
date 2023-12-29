@@ -383,8 +383,8 @@ public final class LMOSettings {
         /**
          * Status bar battery %
          * 0: Hide the battery percentage
-         * 1: Display the battery percentage inside the icon
-         * 2: Display the battery percentage next to the icon
+         * 1: Display the battery percentage next to the icon
+         * 2: Display the battery percentage inside the icon
          * 
          * @hide
          */
