@@ -185,7 +185,7 @@ public class LineageHardwareService extends SystemService {
             Intent intent = new Intent(com.libremobileos.content.Intent.ACTION_INITIALIZE_LINEAGE_HARDWARE);
             intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
             mContext.sendBroadcastAsUser(intent, UserHandle.ALL,
-                    "lineageos.permission.HARDWARE_ABSTRACTION_ACCESS");
+                    com.libremobileos.Manifest.permission.HARDWARE_ABSTRACTION_ACCESS);
         }
     }
 
@@ -203,14 +203,14 @@ public class LineageHardwareService extends SystemService {
         @Override
         public int getSupportedFeatures() {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.HARDWARE_ABSTRACTION_ACCESS", null);
+                    com.libremobileos.Manifest.permission.HARDWARE_ABSTRACTION_ACCESS, null);
             return mLineageHwImpl.getSupportedFeatures();
         }
 
         @Override
         public boolean get(int feature) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.HARDWARE_ABSTRACTION_ACCESS", null);
+                    com.libremobileos.Manifest.permission.HARDWARE_ABSTRACTION_ACCESS, null);
             if (!isSupported(feature)) {
                 Log.e(TAG, "feature " + feature + " is not supported");
                 return false;
@@ -221,7 +221,7 @@ public class LineageHardwareService extends SystemService {
         @Override
         public boolean set(int feature, boolean enable) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.HARDWARE_ABSTRACTION_ACCESS", null);
+                    com.libremobileos.Manifest.permission.HARDWARE_ABSTRACTION_ACCESS, null);
             if (!isSupported(feature)) {
                 Log.e(TAG, "feature " + feature + " is not supported");
                 return false;

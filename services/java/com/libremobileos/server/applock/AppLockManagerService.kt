@@ -436,12 +436,12 @@ class AppLockManagerService(
      * @param packageName the package name of the app to add.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      * @throws [IllegalArgumentException] if package is a system app that
      *     is not whitelisted in [R.array.config_appLockAllowedSystemApps],
      *     or if package is not installed.
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun addPackage(packageName: String, userId: Int) {
         logD {
             "addPackage: packageName = $packageName, userId = $userId"
@@ -494,9 +494,9 @@ class AppLockManagerService(
      * @param packageName the package name of the app to remove.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun removePackage(packageName: String, userId: Int) {
         logD {
             "removePackage: packageName = $packageName, userId = $userId"
@@ -553,9 +553,9 @@ class AppLockManagerService(
      * @param timeout the timeout in milliseconds. Must be >= 5.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun setTimeout(timeout: Long, userId: Int) {
         logD {
             "setTimeout: timeout = $timeout, userId = $userId"
@@ -586,9 +586,9 @@ class AppLockManagerService(
      * @param userId the user id of the caller.
      * @return list of [AppLockData] of the protected apps.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun getPackageData(userId: Int): List<AppLockData> {
         logD {
             "getPackages: userId = $userId"
@@ -613,9 +613,9 @@ class AppLockManagerService(
      * @param shouldRedactNotification true to hide notification content.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun setShouldRedactNotification(
         packageName: String,
         shouldRedactNotification: Boolean,
@@ -658,9 +658,9 @@ class AppLockManagerService(
      * @param biometricsAllowed whether to use biometrics.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun setBiometricsAllowed(biometricsAllowed: Boolean, userId: Int) {
         logD {
             "setBiometricsAllowed: biometricsAllowed = $biometricsAllowed, userId = $userId"
@@ -710,9 +710,9 @@ class AppLockManagerService(
      * @param packageName the name of the package to unlock.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun unlockPackage(packageName: String, userId: Int) {
         logD {
             "unlockPackage: packageName = $packageName, userId = $userId"
@@ -749,9 +749,9 @@ class AppLockManagerService(
      * @param hide whether to hide or not.
      * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun setPackageHidden(packageName: String, hide: Boolean, userId: Int) {
         logD {
             "setPackageHidden: packageName = $packageName, hide = $hide, userId = $userId"
@@ -785,16 +785,16 @@ class AppLockManagerService(
      * @param userId the user id of the caller.
      * @return list of package names of the hidden apps.
      * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     *     [com.libremobileos.Manifest.permission.MANAGE_APP_LOCK].
      */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     override fun getHiddenPackages(userId: Int): List<String> {
         enforceCallingPermission("getHiddenPackages")
         return localService.getHiddenPackages(userId).toList()
     }
 
     private fun enforceCallingPermission(msg: String) {
-        context.enforceCallingPermission(Manifest.permission.MANAGE_APP_LOCK, msg)
+        context.enforceCallingPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK, msg)
     }
 
     private fun onStart() {

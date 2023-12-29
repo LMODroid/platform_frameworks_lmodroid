@@ -237,7 +237,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setMode(int mode) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             if (!mConfig.hasModeSupport()) {
                 return false;
             }
@@ -252,7 +252,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setColorAdjustment(float[] adj) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             return mDHC.setColorAdjustment(adj);
         }
 
@@ -264,7 +264,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public  boolean setAutoContrastEnabled(boolean enabled) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             return mDHC.setAutoContrastEnabled(enabled);
         }
 
@@ -276,7 +276,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setCABCEnabled(boolean enabled) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             return mDHC.setCABCEnabled(enabled);
         }
 
@@ -288,7 +288,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setColorEnhancementEnabled(boolean enabled) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             return mDHC.setColorEnhancementEnabled(enabled);
         }
 
@@ -300,7 +300,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setAutomaticOutdoorModeEnabled(boolean enabled) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             return mOMC.setAutomaticOutdoorModeEnabled(enabled);
         }
 
@@ -312,7 +312,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setDayColorTemperature(int temperature) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             mCTC.setDayColorTemperature(temperature);
             return true;
         }
@@ -325,7 +325,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setNightColorTemperature(int temperature) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             mCTC.setNightColorTemperature(temperature);
             return true;
         }
@@ -373,7 +373,7 @@ public class LiveDisplayService extends SystemService {
         @Override
         public boolean setAntiFlickerEnabled(boolean enabled) {
             mContext.enforceCallingOrSelfPermission(
-                    "lineageos.permission.MANAGE_LIVEDISPLAY", null);
+                    com.libremobileos.Manifest.permission.MANAGE_LIVEDISPLAY, null);
             return mDHC.setAntiFlickerEnabled(enabled);
         }
     };

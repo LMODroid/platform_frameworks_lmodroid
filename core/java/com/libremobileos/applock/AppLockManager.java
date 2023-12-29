@@ -95,7 +95,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void addPackage(@NonNull String packageName) {
         try {
             sService.addPackage(packageName, mContext.getUserId());
@@ -112,7 +112,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void removePackage(@NonNull String packageName) {
         try {
             sService.removePackage(packageName, mContext.getUserId());
@@ -147,7 +147,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void setTimeout(long timeout) {
         try {
             sService.setTimeout(timeout, mContext.getUserId());
@@ -165,7 +165,7 @@ public final class AppLockManager {
      */
     @UserHandleAware
     @NonNull
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public List<AppLockData> getPackageData() {
         try {
             return sService.getPackageData(mContext.getUserId());
@@ -183,7 +183,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void setShouldRedactNotification(@NonNull String packageName, boolean shouldRedactNotification) {
         try {
             sService.setShouldRedactNotification(packageName, shouldRedactNotification, mContext.getUserId());
@@ -200,7 +200,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void setBiometricsAllowed(boolean biometricsAllowed) {
         try {
             sService.setBiometricsAllowed(biometricsAllowed, mContext.getUserId());
@@ -232,7 +232,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void unlockPackage(@NonNull String packageName) {
         try {
             sService.unlockPackage(packageName, mContext.getUserId());
@@ -250,7 +250,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     public void setPackageHidden(@NonNull String packageName, boolean hide) {
         try {
             sService.setPackageHidden(packageName, hide, mContext.getUserId());
@@ -267,7 +267,7 @@ public final class AppLockManager {
      * @hide
      */
     @UserHandleAware
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @RequiresPermission(com.libremobileos.Manifest.permission.MANAGE_APP_LOCK)
     @NonNull
     public List<String> getHiddenPackages() {
         try {
