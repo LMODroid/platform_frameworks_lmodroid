@@ -709,6 +709,13 @@ public final class LMOSettings {
          */
         public static final String TRANSIENT_TASK_MODE = "transient_task_mode";
 
+        /**
+         * boolean value. toggles swipe up hint in gestural nav mode
+         * 
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
+
     }
 
     /**
