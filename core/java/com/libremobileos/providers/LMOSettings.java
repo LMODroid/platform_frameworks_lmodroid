@@ -761,6 +761,13 @@ public final class LMOSettings {
          */
         public static final String QS_FOOTER_DATA_USAGE = "qs_footer_data_usage";
 
+        /**
+         * Show app volume rows in volume panel
+         * 
+         * @hide
+         */
+        public static final String SHOW_APP_VOLUME = "show_app_volume";
+
     }
 
     /**
