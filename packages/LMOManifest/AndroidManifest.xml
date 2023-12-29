@@ -9,6 +9,9 @@
     <!-- Used to launch a common app (FlipFlap) for devices with flip cover. -->
     <protected-broadcast android:name="lineageos.intent.action.LID_STATE_CHANGED" />
 
+    <!-- LineageHealth -->
+    <protected-broadcast android:name="lineageos.platform.intent.action.CHARGING_CONTROL_CANCEL_ONCE" />
+
     <!-- @hide -->
     <permission android:name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS"
                 android:protectionLevel="normal" />
