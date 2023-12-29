@@ -877,5 +877,12 @@ public final class LMOSettings {
          */
         public static final String TRUST_RESTRICT_USB = "trust_restrict_usb";
 
+        /**
+         * Package designated as global VPN provider.
+         * 
+         * @hide
+         */
+        public static final String GLOBAL_VPN_APP = "global_vpn_app";
+
     }
 }
