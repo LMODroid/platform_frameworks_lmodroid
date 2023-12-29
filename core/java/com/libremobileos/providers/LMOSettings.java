@@ -707,6 +707,13 @@ public final class LMOSettings {
          */
         public static final int RING_HOME_BUTTON_BEHAVIOR_DEFAULT = RING_HOME_BUTTON_BEHAVIOR_DO_NOTHING;
 
+        /**
+         * Whether key swap is enabled on supported hardware
+         * 
+         * @hide
+         */
+        public static final String SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
+
     }
 
     /**
