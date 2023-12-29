@@ -129,4 +129,7 @@
     <!-- Whether to use VPN Tethering -->
     <java-symbol type="bool" name="config_enable_vpntethering" />
 
+    <!-- Deprecated target SDK dialog -->
+    <java-symbol type="bool" name="config_disableDeprecatedTargetDialog" />
+
 </resources>
