@@ -676,6 +676,13 @@ public final class LMOSettings {
          */
         public static final String DISPLAY_PICTURE_ADJUSTMENT = "display_picture_adjustment";
 
+        /**
+         * Enable statusbar double tap gesture on to put device to sleep
+         * 
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
     }
 
     /**
