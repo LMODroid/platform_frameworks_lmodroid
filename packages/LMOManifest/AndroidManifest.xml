@@ -8,10 +8,10 @@
 
     <!-- @hide -->
     <permission android:name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS"
-                android:protectionLevel="signature|privileged" />
+                android:protectionLevel="normal" />
     <!-- @hide -->
     <permission android:name="lineageos.permission.MANAGE_LIVEDISPLAY"
-                android:protectionLevel="signature|privileged" />
+                android:protectionLevel="normal" />
 
     <!-- Used for long press power torch feature - automatic turn off on timeout -->
     <protected-broadcast android:name="com.android.server.policy.PhoneWindowManager.ACTION_TORCH_OFF" />
