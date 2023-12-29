@@ -704,6 +704,11 @@ public final class LMOSettings {
          */
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
 
+        /**
+         * @hide
+         */
+        public static final String TRANSIENT_TASK_MODE = "transient_task_mode";
+
     }
 
     /**
