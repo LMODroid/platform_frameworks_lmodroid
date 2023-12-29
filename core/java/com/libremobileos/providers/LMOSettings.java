@@ -578,6 +578,13 @@ public final class LMOSettings {
          */
         public static final String ENABLE_TASKBAR = "enable_taskbar";
 
+        /**
+         * Force show navigation bar setting.
+         * 
+         * @hide
+         */
+        public static final String FORCE_SHOW_NAVBAR = "force_show_navbar";
+
     }
 
     /**
