@@ -683,6 +683,13 @@ public final class LMOSettings {
          */
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
 
+        /**
+         * Three Finger Gesture
+         * 
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
     }
 
     /**
