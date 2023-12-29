@@ -776,6 +776,13 @@ public final class LMOSettings {
          */
         public static final String KEY_EDGE_LONG_SWIPE_ACTION = "key_edge_long_swipe_action";
 
+        /**
+         * Whether to use the custom quick unlock screen control
+         * 
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
+
     }
 
     /**
