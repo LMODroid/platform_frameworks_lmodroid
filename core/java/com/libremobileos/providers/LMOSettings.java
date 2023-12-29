@@ -979,6 +979,44 @@ public final class LMOSettings {
          */
         public static final String QS_TILES_TOGGLEABLE_ON_LOCK_SCREEN = "qs_tiles_toggleable_on_lock_screen";
 
+        /**
+         * Whether to enable Ambient edge light
+         * 
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT = "pulse_ambient_light";
+        /**
+         * What color to use for Ambient edge light
+         * 
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR = "pulse_ambient_light_color";
+        /**
+         * Duration of Ambient edge light in seconds
+         * 
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_DURATION = "pulse_ambient_light_duration";
+        /**
+         * Whether to use color from wallpaper for Ambient edge light
+         * 
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR_MODE = "pulse_ambient_light_color_mode";
+        /**
+         * Number of times to repeat animations of Ambient edge light
+         * 0 is never
+         * 
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_REPEAT_COUNT = "pulse_ambient_light_repeat_count";
+        /**
+         * Width of Ambient edge light in px
+         * 
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_WIDTH = "pulse_ambient_light_width";
+
     }
 
     /**
