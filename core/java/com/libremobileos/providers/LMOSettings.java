@@ -850,6 +850,13 @@ public final class LMOSettings {
          */
         public static final String SHOW_WIFI_STANDARD_ICON = "show_wifi_standard_icon";
 
+        /**
+         * Whether user is allowed to interact with quick settings on lockscreen.
+         * 
+         * @hide
+         */
+        public static final String QS_TILES_TOGGLEABLE_ON_LOCK_SCREEN = "qs_tiles_toggleable_on_lock_screen";
+
     }
 
     /**
