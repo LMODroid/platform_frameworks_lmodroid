@@ -281,4 +281,7 @@
           Use with extreme caution. -->
     <string-array name="config_appLockAllowedSystemApps" translatable="false" />
 
+    <!-- Default value for QS_TRANSPARENCY -->
+    <integer name="config_qs_transparency">85</integer>
+
 </resources>

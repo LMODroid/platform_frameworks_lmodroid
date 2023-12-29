@@ -173,4 +173,7 @@
     <java-symbol type="string" name="unlock_application" />
     <java-symbol type="array" name="config_appLockAllowedSystemApps" />
 
+    <!-- Default value for QS_TRANSPARENCY -->
+    <java-symbol type="integer" name="config_qs_transparency" />
+
 </resources>
