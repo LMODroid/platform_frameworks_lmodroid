@@ -6,6 +6,9 @@
     <protected-broadcast android:name="lineageos.intent.action.INITIALIZE_LINEAGE_HARDWARE" />
     <protected-broadcast android:name="lineageos.platform.intent.action.UPDATE_TWILIGHT_STATE" />
 
+    <!-- Used to launch a common app (FlipFlap) for devices with flip cover. -->
+    <protected-broadcast android:name="lineageos.intent.action.LID_STATE_CHANGED" />
+
     <!-- @hide -->
     <permission android:name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS"
                 android:protectionLevel="normal" />
