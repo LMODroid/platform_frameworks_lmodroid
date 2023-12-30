@@ -38,12 +38,13 @@ import java.util.StringJoiner;
 
 import com.android.providers.settings.SettingsState.Setting;
 
+import com.libremobileos.providers.LMOSettings;
 
 public final class LMOSettingsProvider {
     private static final String LOG_TAG = "LMOSettingsProvider";
 
     public static void onPreUpgradeLocked(int userId, Context context, SettingsState systemSettings, SettingsState secureSettings, SettingsState globalSettings) {
-        final int latestVersion = 0;
+        final int latestVersion = 1;
         Setting versionSetting = secureSettings.getSettingLocked(
                 "lmo_db_ver");
         boolean willUpgradeGlobal = userId == UserHandle.USER_SYSTEM;
@@ -53,6 +54,19 @@ public final class LMOSettingsProvider {
                 currentVersion = Integer.valueOf(versionSetting.getValue());
             } catch (NumberFormatException unused) {
             }
+        }
+
+        if (currentVersion == 0) {
+            Setting currentSetting = systemSettings.getSettingLocked(
+                    "transistent_task_mode");
+            if (!currentSetting.isNull()) {
+                systemSettings.insertSettingOverrideableByRestoreLocked(
+                        LMOSettings.System.TRANSIENT_TASK_MODE,
+                        currentSetting.getValue(),
+                        null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+                systemSettings.deleteSettingLocked("transistent_task_mode");
+            }
+            currentVersion = 1;
         }
 
         if (currentVersion != latestVersion) {
