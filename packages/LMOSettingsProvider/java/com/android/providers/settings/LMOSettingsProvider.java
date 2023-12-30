@@ -66,6 +66,37 @@ public final class LMOSettingsProvider {
                         null, true, SettingsState.SYSTEM_PACKAGE_NAME);
                 systemSettings.deleteSettingLocked("transistent_task_mode");
             }
+
+            Setting forceNavBarSetting = systemSettings.getSettingLocked(
+                    LMOSettings.System.FORCE_SHOW_NAVBAR);
+            if (forceNavBarSetting.isNull()) {
+                String defaultForceNavBar = Integer.toString(context
+                        .getResources().getInteger(R.integer.def_force_show_navbar));
+                globalSettings.insertSettingOverrideableByRestoreLocked(
+                        LMOSettings.System.FORCE_SHOW_NAVBAR, defaultForceNavBar,
+                        null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+            }
+
+            Setting clockPositionSetting = systemSettings.getSettingLocked(
+                    LMOSettings.System.STATUS_BAR_CLOCK);
+            if (clockPositionSetting.isNull()) {
+                String defaultClockPosition = Integer.toString(context
+                        .getResources().getInteger(R.integer.def_clock_position));
+                globalSettings.insertSettingOverrideableByRestoreLocked(
+                        LMOSettings.System.STATUS_BAR_CLOCK, defaultClockPosition,
+                        null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+            }
+
+            Setting volumePanelSetting = secureSettings.getSettingLocked(
+                    LMOSettings.Secure.VOLUME_PANEL_ON_LEFT);
+            if (volumePanelSetting.isNull()) {
+                secureSettings.insertSettingOverrideableByRestoreLocked(
+                        LMOSettings.Secure.VOLUME_PANEL_ON_LEFT,
+                        context.getResources().getBoolean(
+                                R.bool.def_volume_panel_on_left) ? "1" : "0",
+                        null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+            }
+
             currentVersion = 1;
         }
 

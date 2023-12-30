@@ -16,8 +16,19 @@
 -->
 <resources>
     <!-- Defaults for System -->
+    <!-- Default for Settings.System.FORCE_SHOW_NAVBAR -->
+    <integer name="def_force_show_navbar">0</integer>
+
+    <!-- Default clock position Settings.System.STATUS_BAR_CLOCK
+         * 0: show the clock in the right position (LTR)
+         * 1: show the clock in the center
+         * 2: show the clock in the left position (LTR)
+    -->
+    <integer name="def_clock_position">2</integer>
 
     <!-- Defaults for Secure -->
+    <!-- Default for Settings.Secure.VOLUME_PANEL_ON_LEFT -->
+    <bool name="def_volume_panel_on_left">false</bool>
 
     <!-- Defaults for Global -->
 
