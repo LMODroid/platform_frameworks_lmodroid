@@ -16,15 +16,31 @@
 
 package com.android.providers.settings;
 
+import android.Manifest;
+import android.os.Process;
+import android.os.UserManager;
 import android.os.UserHandle;
+import android.os.RemoteException;
 import android.content.Context;
 import android.util.Slog;
+import android.app.AppGlobals;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.UserInfo;
+import android.provider.Settings;
+import android.provider.Settings.Global;
+import android.provider.Settings.Secure;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringJoiner;
 
 import com.android.providers.settings.SettingsState.Setting;
 
 
 public final class LMOSettingsProvider {
-    private static final String TAG = "LMOSettingsProvider";
+    private static final String LOG_TAG = "LMOSettingsProvider";
 
     public static void onPreUpgradeLocked(int userId, Context context, SettingsState systemSettings, SettingsState secureSettings, SettingsState globalSettings) {
         final int latestVersion = 0;
@@ -47,4 +63,35 @@ public final class LMOSettingsProvider {
                     null, true, SettingsState.SYSTEM_PACKAGE_NAME);
         }
     }
+
+    public static void loadRestrictedNetworkingModeSetting(Context context, SettingsState globalSettings) {
+        globalSettings.insertSettingLocked(
+            Global.RESTRICTED_NETWORKING_MODE, "1", null, false,
+            SettingsState.SYSTEM_PACKAGE_NAME);
+        try {
+            List<PackageInfo> packages = new ArrayList<>();
+            for (UserInfo userInfo : UserManager.get(context).getAliveUsers()) {
+                packages.addAll(
+                        AppGlobals.getPackageManager().getPackagesHoldingPermissions(
+                                new String[]{Manifest.permission.INTERNET},
+                                PackageManager.MATCH_UNINSTALLED_PACKAGES,
+                                userInfo.id
+                        ).getList());
+            }
+            final StringJoiner joiner = new StringJoiner(";");
+            packages.forEach(packageInfo -> {
+                int uid = packageInfo.applicationInfo.uid;
+                if (uid < 0 || UserHandle.getAppId(uid) > Process.LAST_APPLICATION_UID) {
+                    throw new IllegalArgumentException("Invalid uid");
+                }
+                joiner.add(String.valueOf(uid));
+            });
+            globalSettings.insertSettingLocked(
+                    "uids_allowed_on_restricted_networks", joiner.toString(), null, false,
+                    SettingsState.SYSTEM_PACKAGE_NAME);
+        } catch (RemoteException e) {
+            Slog.e(LOG_TAG, "Failed to set uids allowed on restricted networks");
+        }
+    }
+
 }
