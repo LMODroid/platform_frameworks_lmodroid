@@ -44,7 +44,7 @@ public final class LMOSettingsProvider {
     private static final String LOG_TAG = "LMOSettingsProvider";
 
     public static void onPreUpgradeLocked(int userId, Context context, SettingsState systemSettings, SettingsState secureSettings, SettingsState globalSettings) {
-        final int latestVersion = 1;
+        final int latestVersion = 2;
         Setting versionSetting = secureSettings.getSettingLocked(
                 "lmo_db_ver");
         boolean willUpgradeGlobal = userId == UserHandle.USER_SYSTEM;
@@ -67,6 +67,25 @@ public final class LMOSettingsProvider {
                 systemSettings.deleteSettingLocked("transistent_task_mode");
             }
             currentVersion = 1;
+        }
+
+        if (currentVersion == 1) {
+            if (willUpgradeGlobal) {
+                Setting currentSetting = globalSettings.getSettingLocked(
+                        Settings.Global.PRIVATE_DNS_MODE);
+                if (!currentSetting.isNull()
+                        && "cloudflare".equals(currentSetting.getValue())) {
+                    globalSettings.insertSettingOverrideableByRestoreLocked(
+                            Settings.Global.PRIVATE_DNS_SPECIFIER,
+                            "one.one.one.one",
+                            null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+                    globalSettings.insertSettingOverrideableByRestoreLocked(
+                            Settings.Global.PRIVATE_DNS_MODE,
+                            "hostname",
+                            null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+                }
+            }
+            currentVersion = 2;
         }
 
         if (currentVersion != latestVersion) {
