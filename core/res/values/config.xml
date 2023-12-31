@@ -26,6 +26,7 @@
         <item>com.libremobileos.server.display.LiveDisplayService</item>
         <item>com.libremobileos.server.health.HealthInterfaceService</item>
         <item>com.libremobileos.server.applock.AppLockManagerService$Lifecycle</item>
+        <item>com.libremobileos.server.app.ParallelSpaceManagerService</item>
     </string-array>
 
     <!-- Paths to the libraries that contain device specific key handlers -->
@@ -283,5 +284,8 @@
 
     <!-- Default value for QS_TRANSPARENCY -->
     <integer name="config_qs_transparency">85</integer>
+
+    <!-- Parallel space max count. Should overlay according to device performance. -->
+    <integer name="config_parallelSpaceMaxCount">9</integer>
 
 </resources>

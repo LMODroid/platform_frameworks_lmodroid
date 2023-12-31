@@ -16,6 +16,9 @@
 
 package com.libremobileos.context;
 
+import com.libremobileos.app.ParallelSpaceManager;
+import com.libremobileos.applock.AppLockManager;
+
 /**
  * @hide
  * TODO: We need to somehow make these managers accessible via getSystemService
@@ -36,5 +39,13 @@ public final class LMOContextConstants {
      * @hide
      */
     public static final String APP_LOCK_SERVICE = "app_lock";
+
+    /**
+     * {@link ParallelSpaceManager}.
+     *
+     * @see #getSystemService(String)
+     * @hide
+     */
+    public static final String PARALLEL_SERVICE = "parallel";
 
 }

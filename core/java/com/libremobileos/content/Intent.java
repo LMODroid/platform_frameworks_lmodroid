@@ -94,4 +94,13 @@ public class Intent {
      */
     public static final String ACTION_INITIALIZE_LIVEDISPLAY =
             "lineageos.intent.action.INITIALIZE_LIVEDISPLAY";
+
+    /**
+     * Broadcast sent to the parallel owner user when parallel space info has been
+     * refreshed.
+     * 
+     * @hide
+     */
+    public static final String ACTION_PARALLEL_SPACE_CHANGED = "android.intent.action.PARALLEL_SPACE_CHANGED";
+
 }

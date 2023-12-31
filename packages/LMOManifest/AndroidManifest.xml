@@ -35,4 +35,8 @@
     <permission android:name="com.android.permission.MANAGE_APP_LOCK"
                 android:protectionLevel="signature|privileged" />
 
+    <!-- @hide Allow managing parallel spaces or receiving related broadcasts. -->
+    <permission android:name="com.android.permission.MANAGE_PARALLEL_SPACES"
+        android:protectionLevel="signature|privileged" />
+
 </manifest>
