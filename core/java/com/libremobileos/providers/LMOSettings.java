@@ -1023,6 +1023,13 @@ public final class LMOSettings {
          */
         public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
 
+        /**
+         * UDFPS animation style
+         *
+         * @hide
+         */
+        public static final String UDFPS_ANIM_STYLE = "udfps_anim_style";
+
     }
 
     /**

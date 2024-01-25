@@ -195,4 +195,7 @@
     <!-- Parallel space max count. -->
     <java-symbol type="integer" name="config_parallelSpaceMaxCount" />
 
+    <!-- Udfps animation package -->
+    <java-symbol type="string" name="config_udfps_animation_customization_package" />
+
 </resources>
