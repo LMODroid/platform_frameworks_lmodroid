@@ -72,7 +72,7 @@ public final class LMOSettingsProvider {
             if (forceNavBarSetting.isNull()) {
                 String defaultForceNavBar = Integer.toString(context
                         .getResources().getInteger(R.integer.def_force_show_navbar));
-                globalSettings.insertSettingOverrideableByRestoreLocked(
+                systemSettings.insertSettingOverrideableByRestoreLocked(
                         LMOSettings.System.FORCE_SHOW_NAVBAR, defaultForceNavBar,
                         null, true, SettingsState.SYSTEM_PACKAGE_NAME);
             }
@@ -82,7 +82,7 @@ public final class LMOSettingsProvider {
             if (clockPositionSetting.isNull()) {
                 String defaultClockPosition = Integer.toString(context
                         .getResources().getInteger(R.integer.def_clock_position));
-                globalSettings.insertSettingOverrideableByRestoreLocked(
+                systemSettings.insertSettingOverrideableByRestoreLocked(
                         LMOSettings.System.STATUS_BAR_CLOCK, defaultClockPosition,
                         null, true, SettingsState.SYSTEM_PACKAGE_NAME);
             }
