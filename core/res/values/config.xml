@@ -292,4 +292,6 @@
     <!-- Package that contains udfps animation customization or empty to disable -->
     <string name="config_udfps_animation_customization_package">com.libremobileos.overlay.customization.udfps.animations</string>
 
+    <!-- Package name of the black theme overlay -->
+    <string name="config_black_theme_overlay_package">com.libremobileos.overlay.customization.blacktheme</string>
 </resources>

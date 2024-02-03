@@ -198,4 +198,6 @@
     <!-- Udfps animation package -->
     <java-symbol type="string" name="config_udfps_animation_customization_package" />
 
+    <!-- Package name of the black theme overlay -->
+    <java-symbol type="string" name="config_black_theme_overlay_package" />
 </resources>
