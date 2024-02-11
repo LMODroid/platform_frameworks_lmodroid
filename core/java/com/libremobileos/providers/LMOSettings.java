@@ -1042,6 +1042,12 @@ public final class LMOSettings {
          */
         public static final String UDFPS_ANIM_STYLE = "udfps_anim_style";
 
+        /**
+         * Whether keyguard will direct show security view (0 = false, 1 = true)
+         * @hide
+         */
+        public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
+
     }
 
     /**
