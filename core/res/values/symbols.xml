@@ -200,4 +200,7 @@
 
     <!-- Package name of the black theme overlay -->
     <java-symbol type="string" name="config_black_theme_overlay_package" />
+
+    <!-- Package name of the navigation no hint overlay -->
+    <java-symbol type="string" name="config_navigation_no_hint_overlay_package" />
 </resources>

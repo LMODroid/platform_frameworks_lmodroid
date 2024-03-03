@@ -294,4 +294,7 @@
 
     <!-- Package name of the black theme overlay -->
     <string name="config_black_theme_overlay_package">com.libremobileos.overlay.customization.blacktheme</string>
+
+    <!-- Package name of the navigation no hint overlay -->
+    <string name="config_navigation_no_hint_overlay_package">com.libremobileos.overlay.customization.navbar.nohint</string>
 </resources>
