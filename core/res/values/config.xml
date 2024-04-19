@@ -301,4 +301,7 @@
 
     <!-- Package name of the navigation no hint overlay -->
     <string name="config_navigation_no_hint_overlay_package">com.libremobileos.overlay.customization.navbar.nohint</string>
+
+    <!-- Whether to show edge light only when the device is face down by default -->
+    <bool name="config_edgeLightFaceDownEnabledByDefault">false</bool>
 </resources>

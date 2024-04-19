@@ -207,4 +207,7 @@
 
     <!-- Package name of the navigation no hint overlay -->
     <java-symbol type="string" name="config_navigation_no_hint_overlay_package" />
+
+    <!-- Whether to show edge light only when the device is face down by default -->
+    <java-symbol type="bool" name="config_edgeLightFaceDownEnabledByDefault" />
 </resources>
