@@ -835,6 +835,17 @@ public final class LMOSettings {
         public static final String POWER_MENU_ACTIONS = "power_menu_actions";
 
         /**
+         * Int value specifying the power menu type (default is 0)
+         * 0 - Lite
+         * 1 - Full
+         * 2 - Classic
+         * 3 - Grid
+         * 4 - Legacy
+         * @hide
+         */
+        public static final String POWER_MENU_TYPE = "power_menu_type";
+
+        /**
          * Whether to show the brightness slider in quick settings panel.
          * 
          * @hide
