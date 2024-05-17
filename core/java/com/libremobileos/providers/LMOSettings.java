@@ -1070,6 +1070,12 @@ public final class LMOSettings {
          */
         public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
 
+        /**
+         * Whether to show the menu key always in the nav bar
+         * regardless of the context when it's configured in the layout.
+         * @hide
+         */
+        public static final String NAV_BAR_FORCE_MENU_KEY = "nav_bar_force_menu_key";
     }
 
     /**
