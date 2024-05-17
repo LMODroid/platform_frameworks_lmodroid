@@ -304,4 +304,7 @@
 
     <!-- Whether to show edge light only when the device is face down by default -->
     <bool name="config_edgeLightFaceDownEnabledByDefault">false</bool>
+
+    <!-- Whether to show options menu in apps targeting honeycomb -->
+    <bool name="target_honeycomb_needs_options_menu">true</bool>
 </resources>
