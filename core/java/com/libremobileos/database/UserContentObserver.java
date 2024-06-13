@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.libremobileos.server.common;
+package com.libremobileos.database;
 
 import android.app.ActivityManagerNative;
 import android.app.IUserSwitchObserver;
@@ -68,7 +68,7 @@ public abstract class UserContentObserver extends ContentObserver {
         };
     }
 
-    protected void observe() {
+    public void observe() {
         try {
             ActivityManagerNative.getDefault().registerUserSwitchObserver(mUserSwitchObserver, TAG);
         } catch (RemoteException e) {
@@ -76,7 +76,7 @@ public abstract class UserContentObserver extends ContentObserver {
         }
     }
 
-    protected void unobserve() {
+    public void unobserve() {
         try {
             mHandler.removeCallbacks(mUpdateRunnable);
             ActivityManagerNative.getDefault().unregisterUserSwitchObserver(mUserSwitchObserver);

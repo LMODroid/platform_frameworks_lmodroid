@@ -38,7 +38,7 @@ import com.android.server.LocalServices;
 import com.android.server.ServiceThread;
 import com.android.server.SystemService;
 
-import com.libremobileos.server.common.UserContentObserver;
+import com.libremobileos.database.UserContentObserver;
 import com.libremobileos.server.display.TwilightTracker.TwilightListener;
 import com.libremobileos.server.display.TwilightTracker.TwilightState;
 

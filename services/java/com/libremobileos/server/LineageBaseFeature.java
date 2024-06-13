@@ -22,7 +22,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.UserHandle;
 
-import com.libremobileos.server.common.UserContentObserver;
+import com.libremobileos.database.UserContentObserver;
 
 import java.io.PrintWriter;
 
