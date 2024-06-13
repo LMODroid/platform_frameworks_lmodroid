@@ -19,7 +19,6 @@ package com.libremobileos.statusbar;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -42,6 +41,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
+import com.libremobileos.database.UserContentObserver;
 import com.libremobileos.providers.LMOSettings;
 
 import com.android.internal.R;
@@ -376,22 +376,22 @@ public class NetworkTraffic extends TextView {
         manager.addDarkReceiver(mDarkReceiver);
         manager.addVisibilityReceiver(mVisibilityReceiver);
 
-        mObserver.observe();
+        mObserver.register();
         updateSettings();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mObserver.unobserve();
+        mObserver.unregister();
     }
 
-    class SettingsObserver extends ContentObserver {
+    class SettingsObserver extends UserContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
-        void observe() {
+        void register() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     LMOSettings.Secure.NETWORK_TRAFFIC_MODE),
@@ -408,15 +408,22 @@ public class NetworkTraffic extends TextView {
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     LMOSettings.Secure.NETWORK_TRAFFIC_SHOW_UNITS),
                     false, this, UserHandle.USER_ALL);
+            observe();
         }
 
-        void unobserve() {
+        void unregister() {
             mContext.getContentResolver().unregisterContentObserver(this);
+            unobserve();
         }
 
         @Override
         public void onChange(boolean selfChange) {
             updateSettings();
+        }
+
+        @Override
+        public void update() {
+            onChange(true);
         }
     }
 
@@ -428,16 +435,19 @@ public class NetworkTraffic extends TextView {
     private void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
-        mMode = Settings.Secure.getInt(resolver,
-                LMOSettings.Secure.NETWORK_TRAFFIC_MODE, 0);
-        mPosition = Settings.Secure.getInt(resolver,
-                LMOSettings.Secure.NETWORK_TRAFFIC_POSITION, POSITION_CENTER);
-        mAutoHide = Settings.Secure.getInt(resolver,
-                LMOSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE, 0) == 1;
-        mUnits = Settings.Secure.getInt(resolver,
-                LMOSettings.Secure.NETWORK_TRAFFIC_UNITS, UNITS_KILOBYTES);
-        mShowUnits = Settings.Secure.getInt(resolver,
-                LMOSettings.Secure.NETWORK_TRAFFIC_SHOW_UNITS, SHOW_UNITS_ON);
+        mMode = Settings.Secure.getIntForUser(resolver,
+                LMOSettings.Secure.NETWORK_TRAFFIC_MODE, 0, UserHandle.USER_CURRENT);
+        mPosition = Settings.Secure.getIntForUser(resolver,
+                LMOSettings.Secure.NETWORK_TRAFFIC_POSITION, POSITION_CENTER,
+                UserHandle.USER_CURRENT);
+        mAutoHide = Settings.Secure.getIntForUser(resolver,
+                LMOSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE, 0, UserHandle.USER_CURRENT) == 1;
+        mUnits = Settings.Secure.getIntForUser(resolver,
+                LMOSettings.Secure.NETWORK_TRAFFIC_UNITS, UNITS_KILOBYTES,
+                UserHandle.USER_CURRENT);
+        mShowUnits = Settings.Secure.getIntForUser(resolver,
+                LMOSettings.Secure.NETWORK_TRAFFIC_SHOW_UNITS, SHOW_UNITS_ON,
+                UserHandle.USER_CURRENT);
 
         switch (mUnits) {
             case UNITS_KILOBITS:
