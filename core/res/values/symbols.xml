@@ -215,4 +215,7 @@
 
     <!-- Whether to show options menu in apps targeting honeycomb -->
     <java-symbol type="bool" name="target_honeycomb_needs_options_menu" />
+
+    <!-- Package name of the edge cutout overlay -->
+    <java-symbol type="string" name="config_edge_cutout_overlay_package" />
 </resources>

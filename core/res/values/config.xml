@@ -307,4 +307,7 @@
 
     <!-- Whether to show options menu in apps targeting honeycomb -->
     <bool name="target_honeycomb_needs_options_menu">true</bool>
+
+    <!-- Package name of the edge cutout overlay -->
+    <string name="config_edge_cutout_overlay_package">com.libremobileos.overlay.customization.edgecutout</string>
 </resources>
