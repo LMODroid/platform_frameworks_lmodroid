@@ -852,6 +852,13 @@ public final class LMOSettings {
         public static final String BERRY_BLACK_THEME = "berry_black_theme";
 
         /**
+         * Whether to use edge cutout for edge devices
+         * 
+         * @hide
+         */
+        public static final String EDGE_CUTOUT = "edge_cutout";
+
+        /**
          * Whether volume panel should appear on the left (or right).
          * 0 = false (on the right)
          * 1 = true (on the left)
