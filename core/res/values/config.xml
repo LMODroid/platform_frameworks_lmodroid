@@ -29,6 +29,7 @@
         <item>com.libremobileos.server.app.ParallelSpaceManagerService</item>
         <item>com.libremobileos.server.biometrics.FaceUnlockService</item>
         <item>com.libremobileos.server.power.PowerOffAlarmService</item>
+        <item>com.libremobileos.server.display.LMOFreeformSystemService</item>
     </string-array>
 
     <!-- Paths to the libraries that contain device specific key handlers -->

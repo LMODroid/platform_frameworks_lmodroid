@@ -33,5 +33,6 @@ java_library_static {
         "framework-lmodroid.static",
         "kotlinx_coroutines",
         "LMOFaceServer",
+        "lmofreeform-server",
     ],
 }
