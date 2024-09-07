@@ -377,6 +377,13 @@ public final class LMOSettings {
         public static final String NOTIFICATION_LIGHT_COLOR_AUTO = "notification_light_color_auto";
 
         /**
+         * 1 if we force notifications to not be dismissible if they are ongoing.
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_FORCE_NON_DISMISSIBLE = "notification_force_non_dismissible";
+
+        /**
          * Whether the notification light will be allowed when in zen mode during
          * downtime
          * 
