@@ -25,12 +25,12 @@ filegroup {
 }
 
 filegroup {
-    name: "framework-lmodroid.api.public.latest",
+    name: "framework-lmodroid.api.combined.public.latest",
     srcs: ["api/current.txt"],
 }
 
 filegroup {
-    name: "framework-lmodroid-removed.api.public.latest",
+    name: "framework-lmodroid-removed.api.combined.public.latest",
     srcs: ["api/removed.txt"],
 }
 
@@ -40,12 +40,12 @@ filegroup {
 }
 
 filegroup {
-    name: "framework-lmodroid.api.system.latest",
+    name: "framework-lmodroid.api.combined.system.latest",
     srcs: ["api/system-current.txt"],
 }
 
 filegroup {
-    name: "framework-lmodroid-removed.api.system.latest",
+    name: "framework-lmodroid-removed.api.combined.system.latest",
     srcs: ["api/system-removed.txt"],
 }
 
