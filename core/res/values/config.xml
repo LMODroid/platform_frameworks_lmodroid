@@ -309,4 +309,8 @@
 
     <!-- Package name of the edge cutout overlay -->
     <string name="config_edge_cutout_overlay_package">com.libremobileos.overlay.customization.edgecutout</string>
+
+    <!-- Screen rotation orientation -->
+    <bool name="config_device_use_screen_rotation_orientation">false</bool>
+    <string name="config_screen_rotation_orientation_node">/sys/devices/platform/common_node/screentate</string>
 </resources>
