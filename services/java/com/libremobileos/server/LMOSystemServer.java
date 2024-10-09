@@ -30,17 +30,28 @@ import com.android.server.SystemServiceManager;
 public class LMOSystemServer {
     private static final String TAG = "LMOSystemServer";
 
+    private static final String FACE_UNLOCK_SERVICE_CLASS =
+            "com.libremobileos.server.biometrics.FaceUnlockService";
+
     public static void startServices(Context context, SystemServiceManager ssm) {
         String[] externalServices = context.getResources().getStringArray(
                 com.android.internal.R.array.config_externalLMODroidServices);
 
         for (String service : externalServices) {
-            try {
-                Slog.i(TAG, "Starting service " + service);
-                ssm.startService(service);
-            } catch (Throwable e) {
-                reportWtf("starting " + service , e);
-            }
+            startService(service, ssm);
+        }
+    }
+
+    public static void startFaceUnlockService(Context context, SystemServiceManager ssm) {
+        startService(FACE_UNLOCK_SERVICE_CLASS, ssm);
+    }
+
+    private static void startService(String service, SystemServiceManager ssm) {
+        try {
+            Slog.i(TAG, "Starting service " + service);
+            ssm.startService(service);
+        } catch (Throwable e) {
+            reportWtf("starting " + service , e);
         }
     }
 
