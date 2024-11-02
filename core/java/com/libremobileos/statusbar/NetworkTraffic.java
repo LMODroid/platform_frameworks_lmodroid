@@ -116,6 +116,48 @@ public class NetworkTraffic extends TextView {
     // to current stats have changed.
     private boolean mNetworksChanged = true;
 
+    private final ConnectivityManager mConnectivityManager;
+    private boolean mCallbacksRegistered;
+
+    // Network tracking related variables
+    final NetworkRequest mNetworkRequest = new NetworkRequest.Builder()
+            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            .addCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
+            .build();
+
+    final ConnectivityManager.NetworkCallback mNetworkCallback =
+            new ConnectivityManager.NetworkCallback() {
+        @Override
+        public void onLinkPropertiesChanged(Network network,
+                LinkProperties linkProperties) {
+            Message msg = new Message();
+            msg.what = MESSAGE_TYPE_ADD_NETWORK;
+            msg.obj = new LinkPropertiesHolder(network, linkProperties);
+            mTrafficHandler.sendMessage(msg);
+        }
+
+        @Override
+        public void onLost(Network network) {
+            Message msg = new Message();
+            msg.what = MESSAGE_TYPE_REMOVE_NETWORK;
+            msg.obj = network;
+            mTrafficHandler.sendMessage(msg);
+        }
+    };
+
+    final ConnectivityManager.NetworkCallback mDefaultNetworkCallback =
+            new ConnectivityManager.NetworkCallback() {
+        @Override
+        public void onAvailable(Network network) {
+            updateViewState();
+        }
+
+        @Override
+        public void onLost(Network network) {
+            updateViewState();
+        }
+    };
+
     public NetworkTraffic(Context context) {
         this(context, null);
     }
@@ -126,6 +168,8 @@ public class NetworkTraffic extends TextView {
 
     public NetworkTraffic(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        mConnectivityManager = context.getSystemService(ConnectivityManager.class);
 
         final Resources resources = getResources();
         mTextSizeSingle = resources.getDimensionPixelSize(R.dimen.net_traffic_single_text_size);
@@ -304,47 +348,6 @@ public class NetworkTraffic extends TextView {
             }
         };
         mObserver = new SettingsObserver(mTrafficHandler);
-
-        // Network tracking related variables
-        final NetworkRequest request = new NetworkRequest.Builder()
-                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                .addCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
-                .build();
-        ConnectivityManager.NetworkCallback networkCallback =
-                new ConnectivityManager.NetworkCallback() {
-                    @Override
-                    public void onLinkPropertiesChanged(Network network,
-                            LinkProperties linkProperties) {
-                        Message msg = new Message();
-                        msg.what = MESSAGE_TYPE_ADD_NETWORK;
-                        msg.obj = new LinkPropertiesHolder(network, linkProperties);
-                        mTrafficHandler.sendMessage(msg);
-                    }
-
-                    @Override
-                    public void onLost(Network network) {
-                        Message msg = new Message();
-                        msg.what = MESSAGE_TYPE_REMOVE_NETWORK;
-                        msg.obj = network;
-                        mTrafficHandler.sendMessage(msg);
-                    }
-                };
-        ConnectivityManager.NetworkCallback defaultNetworkCallback =
-                new ConnectivityManager.NetworkCallback() {
-            @Override
-            public void onAvailable(Network network) {
-                updateViewState();
-            }
-
-            @Override
-            public void onLost(Network network) {
-                updateViewState();
-            }
-        };
-        context.getSystemService(ConnectivityManager.class)
-                .registerNetworkCallback(request, networkCallback);
-        context.getSystemService(ConnectivityManager.class)
-                .registerDefaultNetworkCallback(defaultNetworkCallback);
     }
 
     public void setViewPosition(int vpos) {
@@ -388,6 +391,7 @@ public class NetworkTraffic extends TextView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        unregisterNetworkCallbacks();
         mObserver.unobserve();
     }
 
@@ -426,8 +430,7 @@ public class NetworkTraffic extends TextView {
     }
 
     private boolean isConnectionAvailable() {
-        ConnectivityManager cm = mContext.getSystemService(ConnectivityManager.class);
-        return cm.getActiveNetwork() != null;
+        return mConnectivityManager.getActiveNetwork() != null;
     }
 
     private void updateSettings() {
@@ -464,13 +467,42 @@ public class NetworkTraffic extends TextView {
         }
 
         if (mMode != MODE_DISABLED) {
+            registerNetworkCallbacks();
             updateTrafficDrawable();
+        } else {
+            unregisterNetworkCallbacks();
         }
         updateViewState();
     }
 
     private void updateViewState() {
         mTrafficHandler.sendEmptyMessage(MESSAGE_TYPE_UPDATE_VIEW);
+    }
+
+    private void registerNetworkCallbacks() {
+        if (mCallbacksRegistered) {
+            return;
+        }
+        try {
+            mConnectivityManager.registerNetworkCallback(mNetworkRequest, mNetworkCallback);
+            mConnectivityManager.registerDefaultNetworkCallback(mDefaultNetworkCallback);
+            mCallbacksRegistered = true;
+        } catch (Exception e) {
+            Log.e(TAG, "failed to register network callbacks", e);
+        }
+    }
+
+    private void unregisterNetworkCallbacks() {
+        if (!mCallbacksRegistered) {
+            return;
+        }
+        try {
+            mConnectivityManager.unregisterNetworkCallback(mNetworkCallback);
+            mConnectivityManager.unregisterNetworkCallback(mDefaultNetworkCallback);
+            mCallbacksRegistered = false;
+        } catch (Exception e) {
+            Log.e(TAG, "failed to unregister network callbacks", e);
+        }
     }
 
     private void updateTrafficDrawable() {
