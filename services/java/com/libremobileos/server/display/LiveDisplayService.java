@@ -16,6 +16,10 @@
  */
 package com.libremobileos.server.display;
 
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_FIRST;
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_LAST;
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_OFF;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -42,6 +46,12 @@ import com.libremobileos.server.common.UserContentObserver;
 import com.libremobileos.server.display.TwilightTracker.TwilightListener;
 import com.libremobileos.server.display.TwilightTracker.TwilightState;
 
+import com.libremobileos.app.LineageContextConstants;
+import com.libremobileos.providers.LMOSettings;
+import com.libremobileos.hardware.HSIC;
+import com.libremobileos.hardware.ILiveDisplayService;
+import com.libremobileos.hardware.LiveDisplayConfig;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -49,16 +59,6 @@ import java.util.BitSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-
-import com.libremobileos.app.LineageContextConstants;
-import com.libremobileos.providers.LMOSettings;
-import com.libremobileos.hardware.HSIC;
-import com.libremobileos.hardware.ILiveDisplayService;
-import com.libremobileos.hardware.LiveDisplayConfig;
-
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_FIRST;
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_LAST;
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_OFF;
 
 /**
  * LiveDisplay is an advanced set of features for improving

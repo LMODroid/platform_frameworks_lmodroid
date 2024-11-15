@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The LineageOS Project
+ * Copyright (C) 2021-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,11 @@
 package com.libremobileos.server.app;
 
 import static com.libremobileos.util.PowerMenuConstants.GLOBAL_ACTION_KEY_BUGREPORT;
-import static com.libremobileos.util.PowerMenuConstants.GLOBAL_ACTION_KEY_LOCKDOWN;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.UserHandle;

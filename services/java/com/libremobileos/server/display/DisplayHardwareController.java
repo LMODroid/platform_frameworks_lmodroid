@@ -30,14 +30,14 @@ import android.util.MathUtils;
 import android.util.Slog;
 import android.view.animation.LinearInterpolator;
 
+import com.libremobileos.providers.LMOSettings;
+import com.libremobileos.hardware.LineageHardwareManager;
+import com.libremobileos.hardware.LiveDisplayManager;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
-
-import com.libremobileos.providers.LMOSettings;
-import com.libremobileos.hardware.LineageHardwareManager;
-import com.libremobileos.hardware.LiveDisplayManager;
 
 public class DisplayHardwareController extends LiveDisplayFeature {
 

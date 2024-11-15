@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
- *               2017-2019 The LineageOS Project
+ *               2017-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,11 @@
  */
 package com.libremobileos.server.display;
 
+import static com.libremobileos.server.display.LiveDisplayService.ALL_CHANGED;
+import static com.libremobileos.server.display.LiveDisplayService.DISPLAY_CHANGED;
+import static com.libremobileos.server.display.LiveDisplayService.MODE_CHANGED;
+import static com.libremobileos.server.display.LiveDisplayService.TWILIGHT_CHANGED;
+
 import android.content.Context;
 import android.hardware.display.ColorDisplayManager;
 import android.os.Handler;
@@ -26,11 +31,6 @@ import com.libremobileos.server.display.LiveDisplayService.State;
 import com.libremobileos.server.display.TwilightTracker.TwilightState;
 
 import java.util.BitSet;
-
-import static com.libremobileos.server.display.LiveDisplayService.ALL_CHANGED;
-import static com.libremobileos.server.display.LiveDisplayService.DISPLAY_CHANGED;
-import static com.libremobileos.server.display.LiveDisplayService.MODE_CHANGED;
-import static com.libremobileos.server.display.LiveDisplayService.TWILIGHT_CHANGED;
 
 public abstract class LiveDisplayFeature extends LineageBaseFeature {
 

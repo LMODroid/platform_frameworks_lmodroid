@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
- *               2019 The LineageOS Project
+ *               2019-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,12 @@ import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
 
-import java.io.PrintWriter;
-import java.util.BitSet;
-
 import com.libremobileos.providers.LMOSettings;
 import com.libremobileos.hardware.LineageHardwareManager;
 import com.libremobileos.hardware.LiveDisplayManager;
+
+import java.io.PrintWriter;
+import java.util.BitSet;
 
 public class OutdoorModeController extends LiveDisplayFeature {
 

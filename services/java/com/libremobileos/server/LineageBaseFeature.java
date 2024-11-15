@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 The LineageOS Project
+ * Copyright (C) 2023-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,9 @@ import android.os.UserHandle;
 
 import com.libremobileos.server.common.UserContentObserver;
 
-import java.io.PrintWriter;
-
 import android.provider.Settings;
+
+import java.io.PrintWriter;
 
 public abstract class LineageBaseFeature {
     protected final Context mContext;

@@ -16,6 +16,11 @@
  */
 package com.libremobileos.server.display;
 
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_AUTO;
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_DAY;
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_NIGHT;
+import static com.libremobileos.hardware.LiveDisplayManager.MODE_OFF;
+
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.net.Uri;
@@ -36,11 +41,6 @@ import com.libremobileos.providers.LMOSettings;
 import com.libremobileos.hardware.LineageHardwareManager;
 import com.libremobileos.hardware.LiveDisplayManager;
 import com.libremobileos.util.ColorUtils;
-
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_AUTO;
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_DAY;
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_NIGHT;
-import static com.libremobileos.hardware.LiveDisplayManager.MODE_OFF;
 
 public class ColorTemperatureController extends LiveDisplayFeature {
 

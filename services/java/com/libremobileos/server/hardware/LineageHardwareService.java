@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015-2016 The CyanogenMod Project
- *               2017-2020 The LineageOS Project
+ *               2017-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,22 @@
  */
 package com.libremobileos.server.hardware;
 
+import static com.android.server.display.color.DisplayTransformManager.LEVEL_COLOR_MATRIX_GRAYSCALE;
+import static com.android.server.display.color.DisplayTransformManager.LEVEL_COLOR_MATRIX_NIGHT_DISPLAY;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.UserHandle;
 import android.util.Log;
 
-import com.android.server.display.color.DisplayTransformManager;
 import com.android.server.LocalServices;
 import com.android.server.SystemService;
+import com.android.server.display.color.DisplayTransformManager;
 
 import com.libremobileos.app.LineageContextConstants;
 import com.libremobileos.hardware.ILineageHardwareService;
 import com.libremobileos.hardware.LineageHardwareManager;
-
-import static com.android.server.display.color.DisplayTransformManager.LEVEL_COLOR_MATRIX_NIGHT_DISPLAY;
-import static com.android.server.display.color.DisplayTransformManager.LEVEL_COLOR_MATRIX_GRAYSCALE;
 
 /** @hide */
 public class LineageHardwareService extends SystemService {
