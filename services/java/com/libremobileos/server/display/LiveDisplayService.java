@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
- *               2017-2019,2021 The LineageOS Project
+ *               2017-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -208,12 +208,9 @@ public class LiveDisplayService extends SystemService {
     }
 
     private void updateFeatures(final int flags) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < mFeatures.size(); i++) {
-                    mFeatures.get(i).update(flags, mState);
-                }
+        mHandler.post(() -> {
+            for (int i = 0; i < mFeatures.size(); i++) {
+                mFeatures.get(i).update(flags, mState);
             }
         });
     }
@@ -403,7 +400,7 @@ public class LiveDisplayService extends SystemService {
 
 
     // Display postprocessing can have power impact.
-    private PowerManagerInternal.LowPowerModeListener mLowPowerModeListener =
+    private final PowerManagerInternal.LowPowerModeListener mLowPowerModeListener =
             new PowerManagerInternal.LowPowerModeListener() {
         @Override
         public void onLowPowerModeChanged(PowerSaveState state) {

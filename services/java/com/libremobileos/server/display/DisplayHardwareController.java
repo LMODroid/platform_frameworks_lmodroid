@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
- *               2018-2021 The LineageOS Project
+ *               2018-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.libremobileos.server.display;
 
 import android.animation.FloatArrayEvaluator;
 import android.animation.ValueAnimator;
-import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
@@ -124,7 +123,7 @@ public class DisplayHardwareController extends LiveDisplayFeature {
 
     @Override
     public void onStart() {
-        final ArrayList<Uri> settings = new ArrayList<Uri>();
+        final ArrayList<Uri> settings = new ArrayList<>();
 
         if (mUseCABC) {
             settings.add(DISPLAY_CABC);
@@ -345,19 +344,16 @@ public class DisplayHardwareController extends LiveDisplayFeature {
                 new FloatArrayEvaluator(new float[3]), currentColors, targetColors);
         mAnimator.setDuration(duration);
         mAnimator.setInterpolator(new LinearInterpolator());
-        mAnimator.addUpdateListener(new AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(final ValueAnimator animation) {
-                synchronized (DisplayHardwareController.this) {
-                    if (isScreenOn()) {
-                        float[] value = (float[]) animation.getAnimatedValue();
-                        mHardware.setDisplayColorCalibration(new int[] {
-                                (int) (value[0] * mMaxColor),
-                                (int) (value[1] * mMaxColor),
-                                (int) (value[2] * mMaxColor)
-                        });
-                        screenRefresh();
-                    }
+        mAnimator.addUpdateListener(animation -> {
+            synchronized (DisplayHardwareController.this) {
+                if (isScreenOn()) {
+                    float[] value = (float[]) animation.getAnimatedValue();
+                    mHardware.setDisplayColorCalibration(new int[] {
+                            (int) (value[0] * mMaxColor),
+                            (int) (value[1] * mMaxColor),
+                            (int) (value[2] * mMaxColor)
+                    });
+                    screenRefresh();
                 }
             }
         });

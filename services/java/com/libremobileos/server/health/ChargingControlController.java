@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 The LineageOS Project
+ * Copyright (C) 2023-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ public class ChargingControlController extends LineageHealthFeature {
     private static final SimpleDateFormat mDateFormatter = new SimpleDateFormat("hh:mm:ss a");
 
     // Only when the battery level is above this limit will the charging control be activated.
-    private static int CHARGE_CTRL_MIN_LEVEL = 80;
+    private static final int CHARGE_CTRL_MIN_LEVEL = 80;
     private static final String INTENT_PARTS =
             "com.android.settings.libremobileos.health.CHARGING_CONTROL_SETTINGS";
 

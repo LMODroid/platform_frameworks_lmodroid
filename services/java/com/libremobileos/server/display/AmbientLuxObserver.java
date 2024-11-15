@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +43,7 @@ public class AmbientLuxObserver {
     private final int mThresholdDuration;
 
     private boolean mLightSensorEnabled = false;
-    private int mLightSensorRate;
+    private final int mLightSensorRate;
 
     private float mAmbientLux = 0.0f;
 
@@ -187,7 +188,7 @@ public class AmbientLuxObserver {
      */
     private static class TimedMovingAverageRingBuffer {
 
-        private final LinkedList<Sample> mRing = new LinkedList<Sample>();
+        private final LinkedList<Sample> mRing = new LinkedList<>();
 
         private final int mPeriod;
 
@@ -253,7 +254,7 @@ public class AmbientLuxObserver {
                 sb.append(i.next());
             }
             return "average=" + getAverage() + " length=" + mRing.size() +
-                   " mRing=[" + sb.toString() + "]";
+                   " mRing=[" + sb + "]";
         }
     }
 }
