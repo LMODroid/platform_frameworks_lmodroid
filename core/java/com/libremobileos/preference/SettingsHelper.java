@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +21,7 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.ArrayMap;
 import android.util.ArraySet;
@@ -42,7 +44,7 @@ public class SettingsHelper {
 
     private SettingsHelper(Context context) {
         mContext = context;
-        mObservatory = new Observatory(context, new Handler());
+        mObservatory = new Observatory(context, new Handler(Looper.getMainLooper()));
     }
 
     public static synchronized SettingsHelper get(Context context) {
