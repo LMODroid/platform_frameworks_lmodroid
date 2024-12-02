@@ -84,6 +84,16 @@ public final class LMOSettingsProvider {
                         null, true, SettingsState.SYSTEM_PACKAGE_NAME);
             }
 
+            Setting statscollectionSetting = secureSettings.getSettingLocked(
+                    LMOSettings.Secure.STATS_COLLECTION);
+            if (statscollectionSetting.isNull()) {
+                secureSettings.insertSettingOverrideableByRestoreLocked(
+                        LMOSettings.Secure.STATS_COLLECTION,
+                        context.getResources().getBoolean(
+                                R.bool.def_stats_collection) ? "1" : "0",
+                        null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+            }
+
             currentVersion = 1;
         }
 
