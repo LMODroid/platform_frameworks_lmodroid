@@ -30,6 +30,9 @@
     <!-- Default for Settings.Secure.VOLUME_PANEL_ON_LEFT -->
     <bool name="def_volume_panel_on_left">false</bool>
 
+    <!-- Default for Settings.Secure.STATS_COLLECTION -->
+    <bool name="def_stats_collection">false</bool>
+
     <!-- Defaults for Global -->
 
 </resources>

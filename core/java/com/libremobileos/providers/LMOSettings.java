@@ -1096,6 +1096,12 @@ public final class LMOSettings {
          * @hide
          */
         public static final String NAV_BAR_FORCE_MENU_KEY = "nav_bar_force_menu_key";
+
+        /**
+         * Global stats collection
+         * @hide
+         */
+        public static final String STATS_COLLECTION = "stats_collection";
     }
 
     /**
