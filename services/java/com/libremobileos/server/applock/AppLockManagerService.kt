@@ -314,7 +314,7 @@ class AppLockManagerService(
     }
 
     private fun checkAndUnlockPackage(pkg: String) {
-        if (!isDeviceSecure) return
+        if (!isDeviceSecure || keyguardManager?.isDeviceLocked() ?: false) return
         serviceScope.launch {
             mutex.withLock {
                 if (unlockedPackages.contains(pkg)) return@launch
