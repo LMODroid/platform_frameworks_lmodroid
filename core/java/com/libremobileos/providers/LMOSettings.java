@@ -1096,6 +1096,14 @@ public final class LMOSettings {
          * @hide
          */
         public static final String NAV_BAR_FORCE_MENU_KEY = "nav_bar_force_menu_key";
+
+        /**
+         * Whether to timeout the doze always-on after 10s.
+         * 0 = false, 1 = true
+         *
+         * @hide
+         */
+        public static final String DOZE_ALWAYS_ON_TIMEOUT = "doze_always_on_timeout";
     }
 
     /**
