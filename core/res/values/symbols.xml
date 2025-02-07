@@ -218,4 +218,7 @@
     <!-- Screen rotation orientation -->
     <java-symbol type="bool" name="config_device_use_screen_rotation_orientation" />
     <java-symbol type="string" name="config_screen_rotation_orientation_node" />
+
+    <!-- Doze always-on display timeout by default -->
+    <java-symbol type="bool" name="config_dozeAlwaysOnDisplayTimeoutByDefault" />
 </resources>

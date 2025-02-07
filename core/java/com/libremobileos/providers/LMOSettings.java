@@ -1109,6 +1109,14 @@ public final class LMOSettings {
          * @hide
          */
         public static final String STATS_COLLECTION = "stats_collection";
+
+        /**
+         * Whether to timeout the doze always-on after 10s.
+         * 0 = false, 1 = true
+         *
+         * @hide
+         */
+        public static final String DOZE_ALWAYS_ON_TIMEOUT = "doze_always_on_timeout";
     }
 
     /**

@@ -312,4 +312,7 @@
     <!-- Screen rotation orientation -->
     <bool name="config_device_use_screen_rotation_orientation">false</bool>
     <string name="config_screen_rotation_orientation_node">/sys/devices/platform/common_node/screentate</string>
+
+    <!-- Whether to enable doze always-on display timeout by default -->
+    <bool name="config_dozeAlwaysOnDisplayTimeoutByDefault">false</bool>
 </resources>
