@@ -1072,6 +1072,13 @@ public final class LMOSettings {
          */
         public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
 
+        /**
+         * Whether to timeout the doze always-on after 10s.
+         * 0 = false, 1 = true
+         *
+         * @hide
+         */
+        public static final String DOZE_ALWAYS_ON_TIMEOUT = "doze_always_on_timeout";
     }
 
     /**
