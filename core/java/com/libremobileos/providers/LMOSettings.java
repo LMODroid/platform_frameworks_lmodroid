@@ -806,6 +806,13 @@ public final class LMOSettings {
          * @hide
          */
         public static final String PREVENT_POINTER_ACCELERATION = "prevent_pointer_acceleration";
+
+        /**
+         * Wether to mute audio by pressing the volume up and down keys simultneously on Android TV,
+         * the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String VOLUME_UP_AND_DOWN_MUTE = "volume_up_and_down_mute";
     }
 
     /**
