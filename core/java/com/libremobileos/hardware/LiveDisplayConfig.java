@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
+ *               2025 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +31,6 @@ import android.util.Range;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
-
-import com.libremobileos.os.Concierge;
-import com.libremobileos.os.Concierge.ParcelInfo;
 
 /**
  * Holder class for LiveDisplay static configuration.
@@ -93,58 +91,25 @@ public class LiveDisplayConfig implements Parcelable {
     }
 
     private LiveDisplayConfig(Parcel parcel) {
-        // Read parcelable version via the Concierge
-        ParcelInfo parcelInfo = Concierge.receiveParcel(parcel);
-
-        // temp vars
-        long capabilities = 0;
-        int defaultMode = 0;
-        int defaultDayTemperature = -1;
-        int defaultNightTemperature = -1;
-        boolean defaultAutoContrast = false;
-        boolean defaultAutoOutdoorMode = false;
-        boolean defaultCABC = false;
-        boolean defaultColorEnhancement = false;
-        int minColorTemperature = 0;
-        int maxColorTemperature = 0;
-        int minColorBalance = 0;
-        int maxColorBalance = 0;
         float[] paRanges = new float[10];
 
-        capabilities = parcel.readLong();
-        defaultMode = parcel.readInt();
-        defaultDayTemperature = parcel.readInt();
-        defaultNightTemperature = parcel.readInt();
-        defaultAutoContrast = parcel.readInt() == 1;
-        defaultAutoOutdoorMode = parcel.readInt() == 1;
-        defaultCABC = parcel.readInt() == 1;
-        defaultColorEnhancement = parcel.readInt() == 1;
-        minColorTemperature = parcel.readInt();
-        maxColorTemperature = parcel.readInt();
-        minColorBalance = parcel.readInt();
-        maxColorBalance = parcel.readInt();
-        parcel.readFloatArray(paRanges);
-
-        // set temps
-        mCapabilities = BitSet.valueOf(new long[] { capabilities });
+        mCapabilities = BitSet.valueOf(new long[] { parcel.readLong() });
         mAllModes.set(MODE_FIRST, MODE_LAST);
-        mDefaultMode = defaultMode;
-        mDefaultDayTemperature = defaultDayTemperature;
-        mDefaultNightTemperature = defaultNightTemperature;
-        mDefaultAutoContrast = defaultAutoContrast;
-        mDefaultAutoOutdoorMode = defaultAutoOutdoorMode;
-        mDefaultCABC = defaultCABC;
-        mDefaultColorEnhancement = defaultColorEnhancement;
-        mColorTemperatureRange = Range.create(minColorTemperature, maxColorTemperature);
-        mColorBalanceRange = Range.create(minColorBalance, maxColorBalance);
+        mDefaultMode = parcel.readInt();
+        mDefaultDayTemperature = parcel.readInt();
+        mDefaultNightTemperature = parcel.readInt();
+        mDefaultAutoContrast = parcel.readInt() == 1;
+        mDefaultAutoOutdoorMode = parcel.readInt() == 1;
+        mDefaultCABC = parcel.readInt() == 1;
+        mDefaultColorEnhancement = parcel.readInt() == 1;
+        mColorTemperatureRange = Range.create(parcel.readInt(), parcel.readInt());
+        mColorBalanceRange = Range.create(parcel.readInt(), parcel.readInt());
+        parcel.readFloatArray(paRanges);
         mHueRange = Range.create(paRanges[0], paRanges[1]);
         mSaturationRange = Range.create(paRanges[2], paRanges[3]);
         mIntensityRange = Range.create(paRanges[4], paRanges[5]);
         mContrastRange = Range.create(paRanges[6], paRanges[7]);
         mSaturationThresholdRange = Range.create(paRanges[8], paRanges[9]);
-
-        // Complete parcel info for the concierge
-        parcelInfo.complete();
     }
 
     @Override
@@ -179,10 +144,6 @@ public class LiveDisplayConfig implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
-        // Tell the concierge to prepare the parcel
-        ParcelInfo parcelInfo = Concierge.prepareParcel(out);
-
-        // ==== FIG =====
         long[] caps = mCapabilities.toLongArray();
         out.writeLong(caps != null && caps.length > 0 ? caps[0] : 0L);
         out.writeInt(mDefaultMode);
@@ -202,9 +163,6 @@ public class LiveDisplayConfig implements Parcelable {
                 mIntensityRange.getLower(), mIntensityRange.getUpper(),
                 mContrastRange.getLower(), mContrastRange.getUpper(),
                 mSaturationThresholdRange.getLower(), mSaturationThresholdRange.getUpper() } );
-
-        // Complete the parcel info for the concierge
-        parcelInfo.complete();
     }
 
     /**

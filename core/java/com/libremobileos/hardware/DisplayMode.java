@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
+ *               2025 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +19,6 @@ package com.libremobileos.hardware;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.libremobileos.os.Concierge;
-import com.libremobileos.os.Concierge.ParcelInfo;
 
 /**
  * Display Modes API
@@ -46,24 +44,8 @@ public class DisplayMode implements Parcelable {
     }
 
     private DisplayMode(Parcel parcel) {
-        // Read parcelable version via the Concierge
-        ParcelInfo parcelInfo = Concierge.receiveParcel(parcel);
-
-        // temp vars
-        int tmpId = -1;
-        String tmpName = null;
-
-        tmpId = parcel.readInt();
-        if (parcel.readInt() != 0) {
-            tmpName = parcel.readString();
-        }
-
-        // set temps
-        this.id = tmpId;
-        this.name = tmpName;
-
-        // Complete parcel info for the concierge
-        parcelInfo.complete();
+        this.id = parcel.readInt();
+        this.name = parcel.readInt() != 0 ? parcel.readString() : null;
     }
 
     @Override
@@ -73,10 +55,6 @@ public class DisplayMode implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
-        // Tell the concierge to prepare the parcel
-        ParcelInfo parcelInfo = Concierge.prepareParcel(out);
-
-        // ==== BOYSENBERRY =====
         out.writeInt(id);
         if (name != null) {
             out.writeInt(1);
@@ -84,9 +62,6 @@ public class DisplayMode implements Parcelable {
         } else {
             out.writeInt(0);
         }
-
-        // Complete the parcel info for the concierge
-        parcelInfo.complete();
     }
 
     /** @hide */
