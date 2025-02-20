@@ -61,7 +61,7 @@ java_library_static {
         "vendor.lineage.touch-V1.0-java",
         "vendor.lineage.livedisplay-V2.0-java",
         "vendor.lineage.livedisplay-V2.1-java",
-        "vendor.lineage.health-V1-java",
+        "vendor.lineage.health-V2-java",
     ],
 }
 
@@ -72,7 +72,7 @@ java_sdk_library {
         "vendor.lineage.touch-V1.0-java",
         "vendor.lineage.livedisplay-V2.0-java",
         "vendor.lineage.livedisplay-V2.1-java",
-        "vendor.lineage.health-V1-java",
+        "vendor.lineage.health-V2-java",
     ],
 
     api_packages: ["framework-lmodroid"],
