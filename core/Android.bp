@@ -54,26 +54,29 @@ filegroup {
     srcs: ["api/test-current.txt"],
 }
 
+lineage_sdk_aidl_hals = [
+    "vendor.lineage.health-V2-java",
+    "vendor.lineage.touch-V1-java",
+]
+
+lineage_sdk_hidl_hals = [
+    "vendor.lineage.livedisplay-V2.0-java",
+    "vendor.lineage.livedisplay-V2.1-java",
+    "vendor.lineage.touch-V1.0-java",
+]
+
+lmodroid_framework_LOCAL_STATIC_JAVA_LIBRARIES = lineage_sdk_aidl_hals + lineage_sdk_hidl_hals
+
 java_library_static {
     name: "framework-lmodroid.static",
     srcs: [":framework-lmodroid-sources"],
-    static_libs: [
-        "vendor.lineage.touch-V1.0-java",
-        "vendor.lineage.livedisplay-V2.0-java",
-        "vendor.lineage.livedisplay-V2.1-java",
-        "vendor.lineage.health-V1-java",
-    ],
+    static_libs: lmodroid_framework_LOCAL_STATIC_JAVA_LIBRARIES,
 }
 
 java_sdk_library {
     name: "framework-lmodroid",
     srcs: [":framework-lmodroid-sources"],
-    static_libs: [
-        "vendor.lineage.touch-V1.0-java",
-        "vendor.lineage.livedisplay-V2.0-java",
-        "vendor.lineage.livedisplay-V2.1-java",
-        "vendor.lineage.health-V1-java",
-    ],
+    static_libs: lmodroid_framework_LOCAL_STATIC_JAVA_LIBRARIES,
 
     api_packages: ["framework-lmodroid"],
     dist_group: "lmodroid",
