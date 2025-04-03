@@ -20,9 +20,6 @@ import com.libremobileos.util.palette.Palette.Swatch;
 
 import java.util.List;
 
-/**
- * @hide
- */
 class DefaultGenerator extends Palette.Generator {
 
     private static final float TARGET_DARK_LUMA = 0.26f;
