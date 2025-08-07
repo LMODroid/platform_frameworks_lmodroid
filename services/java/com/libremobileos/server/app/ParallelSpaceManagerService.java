@@ -58,6 +58,7 @@ import android.util.Slog;
 
 import com.android.server.libremobileos.ParallelSpaceManagerServiceInternal;
 
+import com.android.internal.R;
 import com.android.internal.annotations.GuardedBy;
 import com.libremobileos.context.LMOContextConstants;
 import com.libremobileos.app.IParallelSpaceManager;
@@ -82,40 +83,6 @@ import java.util.Set;
 public final class ParallelSpaceManagerService extends SystemService {
 
     private static final String TAG = "ParallelSpaceManagerService";
-
-    /**
-     * By default, only non-launchable system apps will be initially installed in
-     * a new space. Here you can explicitly configure for this.
-     */
-    private static final List<String> SPACE_WHITELIST_PACKAGES = Arrays.asList(
-        // For granting permissions.
-        "com.android.settings",
-        // For managing files.
-        "com.android.documentsui",
-        // Google apps
-        "com.android.vending",
-        "com.google.android.gms",
-        "com.google.android.gms.policy_sidecar_aps",
-        "com.google.android.gsf",
-        "com.google.android.projection.gearhead",
-        "com.google.android.syncadapters.calendar",
-        "com.google.android.syncadapters.contacts",
-        "com.google.android.apps.wellbeing"
-    );
-
-    private static final List<String> SPACE_BLACKLIST_PACKAGES = Arrays.asList(
-        // To avoid third party apps starting it accidentally.
-        "com.android.launcher3",
-        "com.libremobileos.setupwizard"
-    );
-
-    /**
-     * Components should be disabled on space setup.
-     */
-    private static final List<String> SPACE_BLACKLIST_COMPONENTS = Arrays.asList(
-        // Remove settings icon from launcher.
-        "com.android.settings/com.android.settings.Settings"
-    );
 
     private static final int MSG_UPDATE_PARALLEL_USER_LIST = 0;
     private static final int MSG_START_SPACES = 1;
@@ -184,10 +151,12 @@ public final class ParallelSpaceManagerService extends SystemService {
         if (Settings.Secure.getIntForUser(cr, USER_SETUP_COMPLETE, 0, userId) == 1)
             return;
 
-        for (String name : SPACE_BLACKLIST_COMPONENTS) {
+        String[] componentBlacklist = getContext().getResources().getStringArray(
+                R.array.parallel_space_blacklist_component_names);
+        for (String name : componentBlacklist) {
             String[] splittedName = name.split("/");
             if (splittedName.length != 2) {
-                Slog.e(TAG, "Failed when resolving SPACE_BLACKLIST_COMPONENTS: " + name);
+                Slog.e(TAG, "Failed when resolving componentBlacklist: " + name);
             }
 
             ComponentName componentName = new ComponentName(splittedName[0], splittedName[1]);
@@ -383,10 +352,12 @@ public final class ParallelSpaceManagerService extends SystemService {
         for (ResolveInfo resolveInfo : resolveInfos) {
             apps.add(resolveInfo.activityInfo.packageName);
         }
-        apps.removeAll(SPACE_WHITELIST_PACKAGES);
-        apps.addAll(SPACE_BLACKLIST_PACKAGES);
+        apps.removeAll(Arrays.asList(getContext().getResources().getStringArray(
+                R.array.parallel_space_whitelist_packages)));
+        apps.addAll(Arrays.asList(getContext().getResources().getStringArray(
+                R.array.parallel_space_blacklist_packages)));
 
-        Slog.i(TAG, "Package installation skipped: " + apps);
+        Slog.i(TAG, "Packages installation skipped: " + apps);
         return apps;
     }
 
@@ -663,7 +634,10 @@ public final class ParallelSpaceManagerService extends SystemService {
         }
 
         @Override
-        public List<String>getDefaultClonedApps() { return SPACE_WHITELIST_PACKAGES; }
+        public List<String>getDefaultClonedApps() { 
+            return Arrays.asList(getContext().getResources().getStringArray(
+                    R.array.parallel_space_whitelist_packages));
+        }
     }
 
     private final class UserReceiver extends BroadcastReceiver {
