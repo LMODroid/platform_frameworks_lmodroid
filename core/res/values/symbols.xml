@@ -220,4 +220,9 @@
 
     <!-- Doze always-on display timeout by default -->
     <java-symbol type="bool" name="config_dozeAlwaysOnDisplayTimeoutByDefault" />
+
+    <!-- Parallel space -->
+    <java-symbol type="array" name="parallel_space_whitelist_packages" />
+    <java-symbol type="array" name="parallel_space_blacklist_packages" />
+    <java-symbol type="array" name="parallel_space_blacklist_component_names" />
 </resources>
