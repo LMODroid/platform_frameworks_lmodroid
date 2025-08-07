@@ -120,6 +120,7 @@
     <string-array name="parallel_space_blacklist_packages">
         <item>com.android.launcher3</item>
         <item>com.libremobileos.setupwizard</item>
+        <item>com.libremobileos.updater</item>
     </string-array>
 
     <!-- Parallel Space: List of component names to explicitly disable -->
