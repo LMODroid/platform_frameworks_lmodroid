@@ -107,6 +107,7 @@
         <item>com.android.settings</item>
         <item>com.android.documentsui</item>
         <item>com.android.vending</item>
+        <item>com.google.android.documentsui</item>
         <item>com.google.android.gms</item>
         <item>com.google.android.gms.policy_sidecar_aps</item>
         <item>com.google.android.gsf</item>
