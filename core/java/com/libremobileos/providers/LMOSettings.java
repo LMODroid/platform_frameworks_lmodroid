@@ -204,6 +204,13 @@ public final class LMOSettings {
         public static final String CHARGING_CONTROL_LIMIT = "charging_control_charging_limit";
 
         /**
+         * Fast charging mode
+         *
+         * @hide
+         */
+        public static final String FAST_CHARGE_MODE = "fast_charge_mode";
+
+        /**
          * Whether the battery light should be enabled (if hardware supports it)
          * The value is boolean (1 or 0).
          * 
