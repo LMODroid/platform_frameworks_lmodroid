@@ -90,6 +90,11 @@
     <java-symbol type="array" name="keyhandler_keycodes" />
     <java-symbol type="array" name="keyhandler_packages" />
 
+     <!-- Charging speed -->
+    <java-symbol type="string" name="charging_speed" />
+    <java-symbol type="array" name="charging_speed_entries" />
+    <java-symbol type="array" name="charging_speed_values" />
+
     <!-- LiveDisplay -->
     <java-symbol type="bool" name="config_enableLiveDisplay" />
     <java-symbol type="string" name="live_display_title" />

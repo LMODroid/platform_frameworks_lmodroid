@@ -70,4 +70,10 @@
     <!-- Parallel space badge -->
     <string name="parallel_space_badge_label">%1$s</string>
 
+    <!-- Charging speed strings -->
+    <string name="charging_speed">Charging speed</string>
+    <string name="charging_speed_slow">Slow</string>
+    <string name="charging_speed_fast">Fast</string>
+    <string name="charging_speed_super_fast">Super fast</string>
+
 </resources>
