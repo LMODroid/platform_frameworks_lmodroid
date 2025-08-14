@@ -56,6 +56,7 @@ filegroup {
 
 lineage_sdk_aidl_hals = [
     "vendor.lineage.health-V2-java",
+    "vendor.lineage.livedisplay-V1-java",
     "vendor.lineage.touch-V1-java",
 ]
 
