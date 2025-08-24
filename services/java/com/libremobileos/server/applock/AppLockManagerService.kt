@@ -50,6 +50,7 @@ import com.android.internal.annotations.GuardedBy
 import com.android.server.LocalServices
 import com.android.server.SystemService
 import com.android.server.libremobileos.AppLockManagerServiceInternal
+import com.android.server.libremobileos.ParallelSpaceManagerServiceInternal
 import com.android.server.notification.NotificationManagerInternal
 import com.android.server.pm.UserManagerInternal
 import com.android.server.wm.ActivityInterceptorCallback.ActivityInterceptorInfo
@@ -93,7 +94,11 @@ class AppLockManagerService(
     private val serviceScope = CoroutineScope(Dispatchers.Default)
 
     private val currentUserId: Int
-        get() = activityManagerInternal.currentUserId
+        get() {
+            return convertToParallelOwnerIfPossible(
+                activityManagerInternal.currentUserId
+            )
+        }
 
     private var isDeviceSecure = false
 
@@ -142,6 +147,10 @@ class AppLockManagerService(
 
     private val pmInternal: PackageManagerInternal by lazy {
         LocalServices.getService(PackageManagerInternal::class.java)
+    }
+
+    private val parallelSpaceManager: ParallelSpaceManagerServiceInternal by lazy {
+        LocalServices.getService(ParallelSpaceManagerServiceInternal::class.java)
     }
 
     private var deviceLocked = false
@@ -388,9 +397,10 @@ class AppLockManagerService(
     }
 
     private fun getActualUserId(userId: Int, tag: String): Int {
-        return ActivityManager.handleIncomingUser(Binder.getCallingPid(),
+        val actualUserId = ActivityManager.handleIncomingUser(Binder.getCallingPid(),
             Binder.getCallingUid(), userId, false /* allowAll */,
             true /* requireFull */, tag, AppLockManagerService::class.qualifiedName)
+        return convertToParallelOwnerIfPossible(actualUserId)
     }
 
     private inline fun <R> clearAndExecute(crossinline block: () -> R): R {
@@ -897,6 +907,10 @@ class AppLockManagerService(
         }
     }
 
+    private fun convertToParallelOwnerIfPossible(userId: Int): Int {
+        return parallelSpaceManager.convertToParallelOwnerIfPossible(userId)
+    }
+
     private inner class LocalService : AppLockManagerServiceInternal {
         /**
          * Check whether user is valid and device is secure
@@ -1063,17 +1077,18 @@ class AppLockManagerService(
 
         override fun interceptActivity(info: ActivityInterceptorInfo): Intent? {
             val packageName = info.activityInfo.packageName
+            val userId = convertToParallelOwnerIfPossible(info.userId)
             logD {
-                "interceptActivity, pkg = $packageName"
+                "interceptActivity, pkg = $packageName, userId = $userId"
             }
-            if (!requireUnlock(packageName, info.userId)) return null
+            if (!requireUnlock(packageName, userId)) return null
             val target = IntentSender(
                 atmInternal.getIntentSender(
                     ActivityManager.INTENT_SENDER_ACTIVITY,
                     info.callingPackage,
                     info.callingFeatureId,
                     info.callingPid,
-                    info.userId,
+                    userId,
                     null /* token */,
                     null /* resultCode */,
                     0 /* requestCode */,
@@ -1090,9 +1105,9 @@ class AppLockManagerService(
                 .apply {
                     putExtra(Intent.EXTRA_PACKAGE_NAME, packageName)
                     putExtra(Intent.EXTRA_INTENT, target)
-                    putExtra(Intent.EXTRA_USER_ID, info.userId)
+                    putExtra(Intent.EXTRA_USER_ID, userId)
                     putExtra(AppLockManager.EXTRA_PACKAGE_LABEL, info.activityInfo.loadLabel(packageManager))
-                    putExtra(AppLockManager.EXTRA_ALLOW_BIOMETRICS, isBiometricsAllowed(info.userId))
+                    putExtra(AppLockManager.EXTRA_ALLOW_BIOMETRICS, isBiometricsAllowed(userId))
                 }
             return intent
         }
@@ -1135,17 +1150,24 @@ class AppLockManagerService(
         }
 
         override fun onUserStarting(user: TargetUser) {
-            service.onUserStarting(user.userIdentifier)
+            val userId = service.convertToParallelOwnerIfPossible(user.userIdentifier)
+            service.onUserStarting(userId)
         }
 
         override fun onUserStopping(user: TargetUser) {
-            service.onUserStopping(user.userIdentifier)
+            val userId = service.convertToParallelOwnerIfPossible(user.userIdentifier)
+            service.onUserStopping(userId)
         }
 
         override fun onUserSwitching(from: TargetUser?, to: TargetUser) {
+            val fromUserId =
+                service.convertToParallelOwnerIfPossible(
+                    from?.userIdentifier ?: UserHandle.USER_NULL
+                )
+            val toUserId = service.convertToParallelOwnerIfPossible(to.userIdentifier)
             service.onUserSwitching(
-                from?.userIdentifier ?: UserHandle.USER_NULL,
-                to.userIdentifier
+                fromUserId,
+                toUserId
             )
         }
     }
