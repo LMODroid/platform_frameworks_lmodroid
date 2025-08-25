@@ -314,7 +314,7 @@ class AppLockManagerService(
     }
 
     private fun checkAndUnlockPackage(pkg: String) {
-        if (!isDeviceSecure || keyguardManager?.isDeviceLocked() ?: false) return
+        if (!isDeviceSecure || keyguardManager?.isDeviceLocked(currentUserId) ?: false) return
         serviceScope.launch {
             mutex.withLock {
                 if (unlockedPackages.contains(pkg)) return@launch
@@ -937,7 +937,7 @@ class AppLockManagerService(
             if (!checkUserAndDeviceStatus(userId)) return false
             val isLocked = clearAndExecute {
                 // If device is locked then there is no point in proceeding.
-                !ignoreLockState && keyguardManager?.isDeviceLocked() == true
+                !ignoreLockState && keyguardManager?.isDeviceLocked(userId) == true
             }
             if (isLocked) {
                 logD {
