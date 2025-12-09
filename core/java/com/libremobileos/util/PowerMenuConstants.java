@@ -36,6 +36,7 @@ public class PowerMenuConstants {
     public static final String GLOBAL_ACTION_KEY_PANIC = "panic";
     public static final String GLOBAL_ACTION_KEY_SYSTEM_UPDATE = "system_update";
     public static final String GLOBAL_ACTION_KEY_STANDBY = "standby";
+    public static final String GLOBAL_ACTION_KEY_LOCK = "lock";
 
     /**
      * Advanced restart menu actions
@@ -70,6 +71,7 @@ public class PowerMenuConstants {
         GLOBAL_ACTION_KEY_LOGOUT,
         GLOBAL_ACTION_KEY_SYSTEM_UPDATE,
         GLOBAL_ACTION_KEY_STANDBY,
+        GLOBAL_ACTION_KEY_LOCK,
     };
 
     public static String[] getAllActions() {
