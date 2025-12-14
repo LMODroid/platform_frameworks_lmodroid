@@ -31,7 +31,7 @@ public final class LMOSettingsProvider {
     private static final String LOG_TAG = "LMOSettingsProvider";
 
     public static void onPreUpgradeLocked(int userId, Context context, SettingsState systemSettings, SettingsState secureSettings, SettingsState globalSettings) {
-        final int latestVersion = 4;
+        final int latestVersion = 5;
         Setting versionSetting = secureSettings.getSettingLocked(
                 "lmo_db_ver");
         boolean willUpgradeGlobal = userId == UserHandle.USER_SYSTEM;
@@ -133,6 +133,19 @@ public final class LMOSettingsProvider {
                     "1",
                     null, true, SettingsState.SYSTEM_PACKAGE_NAME);
             currentVersion = 4;
+        }
+
+        if (currentVersion == 4) {
+            // Migrate navigation bar button order to AOSP
+            Setting currentSetting = secureSettings.getSettingLocked(
+                    "sysui_nav_bar_inverse");
+            if (!currentSetting.isNull()) {
+                secureSettings.insertSettingOverrideableByRestoreLocked(
+                        Settings.Secure.NAVIGATIONBAR_KEY_ORDER,
+                        currentSetting.getValue(),
+                        null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+            }
+            currentVersion = 5;
         }
 
         if (currentVersion != latestVersion) {
