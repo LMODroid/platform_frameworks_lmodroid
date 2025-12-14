@@ -31,7 +31,7 @@ public final class LMOSettingsProvider {
     private static final String LOG_TAG = "LMOSettingsProvider";
 
     public static void onPreUpgradeLocked(int userId, Context context, SettingsState systemSettings, SettingsState secureSettings, SettingsState globalSettings) {
-        final int latestVersion = 3;
+        final int latestVersion = 4;
         Setting versionSetting = secureSettings.getSettingLocked(
                 "lmo_db_ver");
         boolean willUpgradeGlobal = userId == UserHandle.USER_SYSTEM;
@@ -124,6 +124,15 @@ public final class LMOSettingsProvider {
                     SettingsState.SYSTEM_PACKAGE_NAME);
             }
             currentVersion = 3;
+        }
+
+        if (currentVersion == 3) {
+            // Enable status bar vibrate icon by default since we handle it in SystemUI tuner
+            secureSettings.insertSettingOverrideableByRestoreLocked(
+                    Settings.Secure.STATUS_BAR_SHOW_VIBRATE_ICON,
+                    "1",
+                    null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+            currentVersion = 4;
         }
 
         if (currentVersion != latestVersion) {
