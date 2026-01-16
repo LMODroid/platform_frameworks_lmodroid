@@ -34,5 +34,6 @@
     <bool name="def_stats_collection">false</bool>
 
     <!-- Defaults for Global -->
-
+    <!-- Default for Settings.Global.DISABLE_WINDOW_BLURS -->
+    <integer name="def_disable_window_blurs">0</integer>
 </resources>

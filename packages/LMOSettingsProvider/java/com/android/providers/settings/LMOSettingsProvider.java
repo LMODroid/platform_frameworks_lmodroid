@@ -31,7 +31,7 @@ public final class LMOSettingsProvider {
     private static final String LOG_TAG = "LMOSettingsProvider";
 
     public static void onPreUpgradeLocked(int userId, Context context, SettingsState systemSettings, SettingsState secureSettings, SettingsState globalSettings) {
-        final int latestVersion = 5;
+        final int latestVersion = 6;
         Setting versionSetting = secureSettings.getSettingLocked(
                 "lmo_db_ver");
         boolean willUpgradeGlobal = userId == UserHandle.USER_SYSTEM;
@@ -148,6 +148,12 @@ public final class LMOSettingsProvider {
             currentVersion = 5;
         }
 
+        if (currentVersion == 5) {
+            // Set default value for Settings.Global.DISABLE_WINDOW_BLURS
+            loadDisableWindowBlursSetting(context, globalSettings);
+            currentVersion = 6;
+        }
+
         if (currentVersion != latestVersion) {
             Slog.wtf("onPreUpgradeLocked", currentVersion + " found, expected " + latestVersion);
         } else {
@@ -161,6 +167,15 @@ public final class LMOSettingsProvider {
         globalSettings.insertSettingLocked(
             Global.RESTRICTED_NETWORKING_MODE, "1", null, false,
             SettingsState.SYSTEM_PACKAGE_NAME);
+    }
+
+    public static void loadDisableWindowBlursSetting(Context context, SettingsState globalSettings) {
+        globalSettings.insertSettingLocked(
+                Global.DISABLE_WINDOW_BLURS,
+                String.valueOf(context.getResources().getInteger(R.integer.def_disable_window_blurs)),
+                null,
+                false,
+                SettingsState.SYSTEM_PACKAGE_NAME);
     }
 
 }
