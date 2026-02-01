@@ -21,6 +21,7 @@ import static com.android.server.display.color.DisplayTransformManager.LEVEL_COL
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.display.ColorDisplayManager;
 import android.os.IBinder;
 import android.os.UserHandle;
 import android.util.Log;
@@ -87,8 +88,7 @@ public class LineageHardwareService extends SystemService {
         private int mSupportedFeatures = 0;
 
         public LegacyLineageHardware() {
-            mAcceleratedTransform = mContext.getResources().getBoolean(
-                    com.android.internal.R.bool.config_setColorTransformAccelerated);
+            mAcceleratedTransform = ColorDisplayManager.isColorTransformAccelerated(mContext);
             if (mAcceleratedTransform) {
                 mDTMService = LocalServices.getService(DisplayTransformManager.class);
                 mSupportedFeatures |= LineageHardwareManager.FEATURE_DISPLAY_COLOR_CALIBRATION;
