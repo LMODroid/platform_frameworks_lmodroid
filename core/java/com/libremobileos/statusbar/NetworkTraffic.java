@@ -105,6 +105,7 @@ public class NetworkTraffic extends TextView {
     private long mLastRxBytes;
     private long mLastUpdateTime;
     private boolean mAutoHide;
+    private boolean mHideArrows;
     private long mAutoHideThreshold;
     private int mUnits;
     private int mShowUnits;
@@ -157,6 +158,8 @@ public class NetworkTraffic extends TextView {
             updateViewState();
         }
     };
+
+    private LineageStatusBarItem.Manager mManager;
 
     public NetworkTraffic(Context context) {
         this(context, null);
@@ -379,10 +382,11 @@ public class NetworkTraffic extends TextView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        LineageStatusBarItem.Manager manager =
-                LineageStatusBarItem.findManager((View) this);
-        manager.addDarkReceiver(mDarkReceiver);
-        manager.addVisibilityReceiver(mVisibilityReceiver);
+        mManager = LineageStatusBarItem.findManager(this);
+        if (mManager != null) {
+            mManager.addDarkReceiver(mDarkReceiver);
+            mManager.addVisibilityReceiver(mVisibilityReceiver);
+        }
 
         mObserver.observe();
         updateSettings();
@@ -391,8 +395,16 @@ public class NetworkTraffic extends TextView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+
+        if (mManager != null) {
+            mManager.removeDarkReceiver(mDarkReceiver);
+            mManager.removeVisibilityReceiver(mVisibilityReceiver);
+            mManager = null;
+        }
+
         unregisterNetworkCallbacks();
         mObserver.unobserve();
+        mTrafficHandler.removeCallbacksAndMessages(null);
     }
 
     class SettingsObserver extends ContentObserver {
@@ -410,6 +422,9 @@ public class NetworkTraffic extends TextView {
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     LMOSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    LMOSettings.Secure.NETWORK_TRAFFIC_HIDE_ARROWS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     LMOSettings.Secure.NETWORK_TRAFFIC_UNITS),
@@ -442,6 +457,8 @@ public class NetworkTraffic extends TextView {
                 LMOSettings.Secure.NETWORK_TRAFFIC_POSITION, POSITION_CENTER);
         mAutoHide = Settings.Secure.getInt(resolver,
                 LMOSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE, 0) == 1;
+        mHideArrows = Settings.Secure.getInt(resolver,
+                LMOSettings.Secure.NETWORK_TRAFFIC_HIDE_ARROWS, 0) == 1;
         mUnits = Settings.Secure.getInt(resolver,
                 LMOSettings.Secure.NETWORK_TRAFFIC_UNITS, UNITS_KILOBYTES);
         mShowUnits = Settings.Secure.getInt(resolver,
@@ -507,7 +524,9 @@ public class NetworkTraffic extends TextView {
 
     private void updateTrafficDrawable() {
         final int drawableResId;
-        if (mMode == MODE_UPSTREAM_AND_DOWNSTREAM) {
+        if (mHideArrows) {
+            drawableResId = 0;
+        } else if (mMode == MODE_UPSTREAM_AND_DOWNSTREAM) {
             drawableResId = R.drawable.stat_sys_network_traffic_updown;
         } else if (mMode == MODE_UPSTREAM_ONLY) {
             drawableResId = R.drawable.stat_sys_network_traffic_up;
@@ -517,6 +536,7 @@ public class NetworkTraffic extends TextView {
             drawableResId = 0;
         }
         mDrawable = drawableResId != 0 ? getResources().getDrawable(drawableResId) : null;
+        setCompoundDrawablePadding(0);
         setCompoundDrawablesWithIntrinsicBounds(null, null, mDrawable, null);
         updateTrafficDrawableColor();
     }

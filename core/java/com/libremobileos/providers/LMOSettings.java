@@ -999,6 +999,12 @@ public final class LMOSettings {
         public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
 
         /**
+         * Whether or not to hide network traffic direction arrows
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_HIDE_ARROWS = "network_traffic_hide_arrows";
+
+        /**
          * Measurement unit preference for network traffic
          * 0 = kBit/s
          * 1 = MBit/s
