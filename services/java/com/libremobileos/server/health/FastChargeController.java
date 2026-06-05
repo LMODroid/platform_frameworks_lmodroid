@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -93,7 +94,12 @@ public class FastChargeController extends LineageHealthFeature {
     }
 
     public boolean setFastChargeMode(int mode) {
-        putInt(LMOSettings.System.FAST_CHARGE_MODE, mode);
+        final long token = Binder.clearCallingIdentity();
+        try {
+            putInt(LMOSettings.System.FAST_CHARGE_MODE, mode);
+        } finally {
+            Binder.restoreCallingIdentity(token);
+        }
         return true;
     }
 
