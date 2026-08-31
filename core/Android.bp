@@ -54,6 +54,21 @@ filegroup {
     srcs: ["api/test-current.txt"],
 }
 
+filegroup {
+    name: "framework-lmodroid.api.combined.test.latest",
+    srcs: ["api/test-current.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid-removed.api.combined.test.latest",
+    srcs: ["api/test-removed.txt"],
+}
+
+filegroup {
+    name: "framework-lmodroid-incompatibilities.api.test.latest",
+    srcs: ["api/test-current.txt"],
+}
+
 lineage_sdk_aidl_hals = [
     "vendor.lineage.health-V2-java",
     "vendor.lineage.livedisplay-V1-java",
