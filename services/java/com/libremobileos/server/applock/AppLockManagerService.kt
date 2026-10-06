@@ -27,6 +27,7 @@ import android.app.AlarmManager
 import android.app.KeyguardManager
 import android.app.PendingIntent
 import android.app.TaskStackListener
+import android.app.admin.DevicePolicyManagerInternal
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -52,7 +53,6 @@ import com.android.server.SystemService
 import com.android.server.libremobileos.AppLockManagerServiceInternal
 import com.android.server.libremobileos.ParallelSpaceManagerServiceInternal
 import com.android.server.notification.NotificationManagerInternal
-import com.android.server.pm.UserManagerInternal
 import com.android.server.wm.ActivityInterceptorCallback.ActivityInterceptorInfo
 import com.android.server.wm.ActivityTaskManagerInternal
 
@@ -133,8 +133,8 @@ class AppLockManagerService(
         context.getSystemService(AlarmManager::class.java)
     }
 
-    private val userManagerInternal: UserManagerInternal by lazy {
-        LocalServices.getService(UserManagerInternal::class.java)
+    private val devicePolicyManagerInternal: DevicePolicyManagerInternal? by lazy {
+        LocalServices.getService(DevicePolicyManagerInternal::class.java)
     }
 
     private val activityManagerInternal: ActivityManagerInternal by lazy {
@@ -929,7 +929,7 @@ class AppLockManagerService(
                 return false
             }
             val isManaged = clearAndExecute {
-                userManagerInternal.isUserManaged(userId)
+                devicePolicyManagerInternal?.getProfileOwnerAsUser(userId) != null
             }
             if (isManaged) {
                 logD {
