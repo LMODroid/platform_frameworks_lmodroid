@@ -295,7 +295,7 @@ public final class ParallelSpaceManagerService extends SystemService {
 
         try {
             userId = mActivityManager.getCurrentUserId();
-            users = mUserManager.getUsers(true, true, true);
+            users = mUserManager.getUsers(true);
         } catch (RemoteException e) {
         }
 
