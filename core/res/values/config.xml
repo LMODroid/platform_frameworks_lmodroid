@@ -25,7 +25,6 @@
         <item>com.libremobileos.server.app.LineageGlobalActionsService</item>
         <item>com.libremobileos.server.display.LiveDisplayService</item>
         <item>com.libremobileos.server.health.HealthInterfaceService</item>
-        <item>com.libremobileos.server.applock.AppLockManagerService$Lifecycle</item>
         <item>com.libremobileos.server.app.ParallelSpaceManagerService</item>
         <item>com.libremobileos.server.display.LMOFreeformSystemService</item>
         <item>com.libremobileos.server.microg.MicroGPermissionService</item>
@@ -285,10 +284,6 @@
     -->
     <string-array name="config_oemFastChargerStatusPaths" translatable="false">
     </string-array>
-
-    <!-- List of system apps that are allowed to be locked with app lock.
-          Use with extreme caution. -->
-    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
 
     <!-- Default value for QS_TRANSPARENCY -->
     <integer name="config_qs_transparency">85</integer>

@@ -26,15 +26,6 @@
     <protected-broadcast android:name="io.chaldeaprjkt.gamespace.action.GAME_START" />
     <protected-broadcast android:name="io.chaldeaprjkt.gamespace.action.GAME_STOP" />
 
-    <!-- App lock -->
-    <protected-broadcast android:name="com.libremobileos.server.applock.AppLockManagerService.APP_LOCK_TIMEOUT" />
-    <protected-broadcast android:name="com.libremobileos.applock.action.UNLOCK_APP" />
-
-    <!-- Allows an application to manage app lock
-         @hide -->
-    <permission android:name="com.android.permission.MANAGE_APP_LOCK"
-                android:protectionLevel="signature|privileged" />
-
     <!-- @hide Allow managing parallel spaces or receiving related broadcasts. -->
     <permission android:name="com.android.permission.MANAGE_PARALLEL_SPACES"
         android:protectionLevel="signature|privileged" />

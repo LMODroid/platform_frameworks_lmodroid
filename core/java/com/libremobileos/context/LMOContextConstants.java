@@ -17,7 +17,6 @@
 package com.libremobileos.context;
 
 import com.libremobileos.app.ParallelSpaceManager;
-import com.libremobileos.applock.AppLockManager;
 
 /**
  * @hide
@@ -31,14 +30,6 @@ public final class LMOContextConstants {
     private LMOContextConstants() {
         // Empty constructor
     }
-
-    /**
-     * {@link AppLockManager}.
-     *
-     * @see #getSystemService(String)
-     * @hide
-     */
-    public static final String APP_LOCK_SERVICE = "app_lock";
 
     /**
      * {@link ParallelSpaceManager}.
