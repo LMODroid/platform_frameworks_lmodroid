@@ -68,4 +68,11 @@ public final class LineageContextConstants {
      */
     public static final String LINEAGE_LIVEDISPLAY_SERVICE = "lineagelivedisplay";
 
+    /**
+     * Use to access the Sensitive Phone Numbers service.
+     *
+     * @hide
+     */
+    public static final String LINEAGE_SENSITIVE_PHONE_NUMBERS_SERVICE = "lineagesensitivephone";
+
 }

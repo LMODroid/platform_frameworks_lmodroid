@@ -27,13 +27,17 @@ filegroup {
 java_library_static {
     name: "services.lmodroid",
     defaults: ["platform_service_defaults"],
-    srcs: [":services.lmodroid-sources"],
+    srcs: [
+        ":services.lmodroid-sources",
+        ":telecom-sensitive-phone-numbers-aidl",
+    ],
     libs: ["services.core"],
     static_libs: [
         "framework-lmodroid.static",
         "kotlinx_coroutines",
         "LMOFaceServer",
         "lmofreeform-server",
+        "org.lineageos.lib.phone",
     ],
     jarjar_rules: "jarjar-rules.txt",
 }
